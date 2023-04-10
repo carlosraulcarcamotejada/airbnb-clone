@@ -1,6 +1,8 @@
 import { FC } from "react";
 import "./globals.css";
 import { Nunito } from "next/font/google";
+import { Navbar } from "./components/Navbar/Navbar";
+
 
 export const metadata = {
   title: "Airbnb",
@@ -19,8 +21,10 @@ const RootLayout: FC<prop> = ({
   children: React.ReactNode;
 }): JSX.Element => {
   return (
-    <html lang="en">
-      <body className={font.className}>{children}</body>
+    <html className="select-none" lang="en">
+      <body className={font.className}>
+        <Navbar />
+      </body>
     </html>
   );
 };

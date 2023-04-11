@@ -49,7 +49,7 @@ const UserMenu: FC = (): JSX.Element => {
                     md:cursor-pointer 
                     hover:shadow-md 
                     transition
-                "
+                    "
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
@@ -77,8 +77,7 @@ const UserMenu: FC = (): JSX.Element => {
                 flex
                 flex-col
                 md:cursor-pointer
-
-            "
+                "
           >
             <>
               <MenuItem onClick={() => {}} label="Login" />

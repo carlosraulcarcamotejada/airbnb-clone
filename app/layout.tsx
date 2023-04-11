@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import { Navbar } from "./components/Navbar/Navbar";
+import { Modal } from "./components/modals/Modal";
 
 
 export const metadata = {
@@ -18,11 +19,12 @@ type prop = {
 const RootLayout: FC<prop> = ({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }): JSX.Element => {
   return (
     <html className="select-none" lang="en">
       <body className={font.className}>
+        <Modal actionLabel="" onClose={undefined} onSumbit={undefined} isOpen title="Hello World"   />
         <Navbar />
       </body>
     </html>

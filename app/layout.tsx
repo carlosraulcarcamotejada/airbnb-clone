@@ -2,8 +2,9 @@ import { FC, ReactNode } from "react";
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import { Navbar } from "./components/Navbar/Navbar";
-import { Modal } from "./components/modals/Modal";
-
+import { ReduxProviders } from "./providers/ReduxProvider";
+import { RegisterModal } from "./components/modals/RegisterModal";
+import { ToasterProvider } from "./providers/ToasterProvider";
 
 export const metadata = {
   title: "Airbnb",
@@ -24,8 +25,11 @@ const RootLayout: FC<prop> = ({
   return (
     <html className="select-none" lang="en">
       <body className={font.className}>
-        <Modal actionLabel="" onClose={undefined} onSumbit={undefined} isOpen title="Hello World"   />
-        <Navbar />
+        <ReduxProviders>
+          <ToasterProvider />
+          <RegisterModal />
+          <Navbar />
+        </ReduxProviders>
       </body>
     </html>
   );

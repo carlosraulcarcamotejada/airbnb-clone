@@ -9,10 +9,10 @@ type props = {
   footer?: ReactElement;
   isDisable?: boolean;
   isOpen?: boolean;
-  onClose: (() => void )| undefined;
-  onSumbit:( () => void ) | undefined;
+  onClose: () => void;
+  onSumbit: () => void;
   secondaryAction?: () => void;
-  secondaryLabel?: () => void;
+  secondaryActionLabel?: string;
   title?: string;
 };
 
@@ -25,26 +25,26 @@ const Modal: FC<props> = ({
   footer,
   isDisable,
   secondaryAction,
-  secondaryLabel,
+  secondaryActionLabel,
   title,
 }): JSX.Element => {
   const [showModal, setShowModal] = useState(isOpen);
 
   useEffect(() => {
     setShowModal(isOpen);
-    setTimeout(() => {
-      onClose && onClose();
-    }, 300);
   }, [isOpen]);
 
   const handleClose = useCallback(() => {
     if (isDisable) return;
     setShowModal(false);
-  }, [isDisable, onclose]);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  }, [isDisable, onClose]);
 
   const handleSubmit = useCallback(() => {
     if (isDisable) return;
-    onSumbit && onSumbit();
+    onSumbit();
   }, [isDisable, onSumbit]);
 
   const handleSecondaryAction = useCallback(() => {
@@ -56,6 +56,7 @@ const Modal: FC<props> = ({
 
   return (
     <div
+      id="main-modal"
       className="
                 flex
                 justify-center
@@ -72,42 +73,45 @@ const Modal: FC<props> = ({
     >
       <div
         className="
-                    relative
-                    w-full
-                    md:w-4/6
-                    lg:w-3/6
-                    xl:w-2/5
-                    my-6
-                    mx-auto
-                    h-full
-                    md:h-auto
+                  relative
+                  w-full
+                  md:w-4/6
+                  lg:w-3/6
+                  xl:w-2/5
+                  my-6
+                  mx-auto
+                  h-full
+                  md:h-auto
                 "
       >
         {/*CONTENT*/}
         <div
           className={`
-                        translate
-                        duration-300
-                        h-full
-                        ${showModal ? "translate-y-0" : "translate-y-full"}
-                        ${showModal ? "opacity-100" : "opacity-0"}
+                      translate
+                      duration-300
+                      h-full
+                      ${
+                        showModal
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-full opacity-0"
+                      }
                     `}
         >
           <div
             className="
-                        translate
-                        h-full
-                        md:h-auto
-                        rounded-lg
-                        shadow-lg
-                        relative
-                        flex
-                        flex-col
-                        w-full
-                        bg-white
-                        outline-none
-                        focus:outline-none
-                        "
+                      translate
+                      h-full
+                      md:h-auto
+                      rounded-lg
+                      shadow-lg
+                      relative
+                      flex
+                      flex-col
+                      w-full
+                      bg-white
+                      outline-none
+                      focus:outline-none
+                      "
           >
             {/*HEADER*/}
             <div
@@ -126,13 +130,13 @@ const Modal: FC<props> = ({
                   handleClose();
                 }}
                 className="
-                            p-1
-                            border-0
-                            hover:opacity-70
-                            transition
-                            absolute
-                            left-9
-                            "
+                          p-1
+                          border-0
+                          hover:opacity-70
+                          transition
+                          absolute
+                          left-9
+                          "
                 type="button"
               >
                 <IoMdClose size={18} />
@@ -145,14 +149,27 @@ const Modal: FC<props> = ({
               {/*FOOTER*/}
               <div
                 className="
-                            flex
-                            items-center
-                            gap-4
-                            w-full
-                            "
+                          flex
+                          items-center
+                          gap-4
+                          w-full
+                          "
               >
-                <Button label="My button" isDisable={false} onClick={()=>{}} />
+                {secondaryAction && secondaryActionLabel && (
+                  <Button
+                    isOutline
+                    label={secondaryActionLabel || ""}
+                    isDisable={!!isDisable}
+                    onClick={handleSecondaryAction}
+                  />
+                )}
+                <Button
+                  label={actionLabel}
+                  isDisable={!!isDisable}
+                  onClick={handleSubmit}
+                />
               </div>
+              {footer}
             </div>
           </div>
         </div>

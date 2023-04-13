@@ -4,7 +4,7 @@ import { IconType } from "react-icons";
 
 type props = {
   icon?: IconType;
-  isDisable: boolean;
+  isDisable?: boolean;
   isOutline?: boolean;
   isSmall?: boolean;
   label: string;

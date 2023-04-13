@@ -3,8 +3,10 @@ import { FC, useCallback, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
 import { MenuItem } from "./MenuItem";
+import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
 
 const UserMenu: FC = (): JSX.Element => {
+  const {open} = useRegisterModalStore()
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -81,7 +83,7 @@ const UserMenu: FC = (): JSX.Element => {
           >
             <>
               <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem onClick={() => {}} label="Sing Up" />
+              <MenuItem onClick={open} label="Sing Up" />
             </>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/store";
-import { onClose, onOpen } from "../store/register/registerSlice";
+import { onClose, onOpen } from "../store/registerModal/registerModalSlice";
 
 const useRegisterModalStore = () => {
   const dispatch: AppDispatch = useDispatch();

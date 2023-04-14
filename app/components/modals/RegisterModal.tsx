@@ -14,9 +14,11 @@ import { Modal } from "./Modal";
 import { Heading } from "../Heading";
 import { Input } from "../inputs/Input";
 import { Button } from "../Button";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const RegisterModal: FC = (): JSX.Element => {
-  const { close, open, isOpen } = useRegisterModalStore();
+  const { close, isOpen } = useRegisterModalStore();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,9 +30,18 @@ const RegisterModal: FC = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    //start registering user
-    close();
-    setIsLoading(false);
+    axios
+      .post("/api/register", data)
+      .then(() => {
+        close();
+        toast.success("User saved succesfully");
+      })
+      .catch((error) => {
+        toast.error("Something went wrong");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const bodyContent = (
@@ -104,7 +115,14 @@ const RegisterModal: FC = (): JSX.Element => {
                   font-light
                   "
       >
-        <div className="flex items-center gap-2 justify-center">
+        <div
+          className="
+                    flex
+                    items-center 
+                    justify-center
+                    gap-2 
+                    "
+        >
           <div>Aleready have an account?</div>
           <div
             onClick={close}
@@ -123,12 +141,12 @@ const RegisterModal: FC = (): JSX.Element => {
 
   return (
     <Modal
-      isDisable={isLoading}
+      disable={isLoading}
       isOpen={isOpen}
       title="Register"
       actionLabel="Continue"
       onClose={close}
-      onSumbit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
     />

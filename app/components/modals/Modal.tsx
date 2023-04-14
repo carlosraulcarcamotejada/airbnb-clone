@@ -7,10 +7,10 @@ type props = {
   actionLabel: string;
   body?: ReactElement;
   footer?: ReactElement;
-  isDisable?: boolean;
+  disable?: boolean;
   isOpen?: boolean;
   onClose: () => void;
-  onSumbit: () => void;
+  onSubmit: () => void;
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
   title?: string;
@@ -20,10 +20,10 @@ const Modal: FC<props> = ({
   actionLabel,
   isOpen,
   onClose,
-  onSumbit,
+  onSubmit,
   body,
   footer,
-  isDisable,
+  disable,
   secondaryAction,
   secondaryActionLabel,
   title,
@@ -35,22 +35,22 @@ const Modal: FC<props> = ({
   }, [isOpen]);
 
   const handleClose = useCallback(() => {
-    if (isDisable) return;
+    if (disable) return;
     setShowModal(false);
     setTimeout(() => {
       onClose();
     }, 300);
-  }, [isDisable, onClose]);
+  }, [disable, onClose]);
 
   const handleSubmit = useCallback(() => {
-    if (isDisable) return;
-    onSumbit();
-  }, [isDisable, onSumbit]);
+    if (disable) return;
+    onSubmit();
+  }, [disable, onSubmit]);
 
   const handleSecondaryAction = useCallback(() => {
-    if (isDisable || !secondaryAction) return;
+    if (disable || !secondaryAction) return;
     secondaryAction();
-  }, [isDisable, secondaryAction]);
+  }, [disable, secondaryAction]);
 
   if (!isOpen) return <></>;
 
@@ -82,7 +82,7 @@ const Modal: FC<props> = ({
                   mx-auto
                   h-full
                   md:h-auto
-                "
+                  "
       >
         {/*CONTENT*/}
         <div
@@ -159,13 +159,13 @@ const Modal: FC<props> = ({
                   <Button
                     isOutline
                     label={secondaryActionLabel || ""}
-                    isDisable={!!isDisable}
+                    isDisable={!!disable}
                     onClick={handleSecondaryAction}
                   />
                 )}
                 <Button
                   label={actionLabel}
-                  isDisable={!!isDisable}
+                  isDisable={!!disable}
                   onClick={handleSubmit}
                 />
               </div>

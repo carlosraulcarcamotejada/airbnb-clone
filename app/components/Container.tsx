@@ -6,7 +6,19 @@ type props = {
 };
 
 const Container: FC<props> = ({ children }): JSX.Element => {
-  return <div className="max-w-[2520px] mx-auto px-4 sm:px-2 md:px-10 xl:px-20">{children}</div>;
+  return (
+    <div
+      className="
+                max-w-[2520px] 
+                md:px-10 
+                mx-auto px-4 
+                sm:px-2 
+                xl:px-20
+                "
+    >
+      {children}
+    </div>
+  );
 };
 
 export { Container };

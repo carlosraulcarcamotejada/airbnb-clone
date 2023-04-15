@@ -1,5 +1,4 @@
 "use client";
-import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
 import { FC, useState } from "react";
 import {
   FieldValues,
@@ -16,9 +15,13 @@ import { Input } from "../inputs/Input";
 import { Button } from "../Button";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
+import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
+import { signIn } from "next-auth/react";
 
-const RegisterModal: FC = (): JSX.Element => {
-  const { onClose, isOpen } = useRegisterModalStore();
+const LoginModal: FC = (): JSX.Element => {
+  const registerModal = useRegisterModalStore();
+  const loginModal = useLoginModalStore();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,18 +33,7 @@ const RegisterModal: FC = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    axios
-      .post("/api/register", data)
-      .then(() => {
-        onClose();
-        toast.success("User saved succesfully");
-      })
-      .catch((error) => {
-        toast.error("Something went wrong");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    signIn('credentials',{...data});
   };
 
   const bodyContent = (
@@ -54,22 +46,14 @@ const RegisterModal: FC = (): JSX.Element => {
     >
       <Heading
         center={true}
-        subtitle="Create an account!"
-        title="Welcome to Airbnb"
+        subtitle="Login to your account"
+        title="Welcome back"
       />
       <Input
         disable={isLoading}
         errors={errors}
         id="email"
         label="Email"
-        register={register}
-        required
-      />
-      <Input
-        disable={isLoading}
-        errors={errors}
-        id="name"
-        label="Name"
         register={register}
         required
       />
@@ -125,7 +109,7 @@ const RegisterModal: FC = (): JSX.Element => {
         >
           <div>Aleready have an account?</div>
           <div
-            onClick={close}
+            onClick={loginModal.onClose}
             className="
                       cursor-pointer
                       hover:underline
@@ -145,18 +129,17 @@ const RegisterModal: FC = (): JSX.Element => {
       body={bodyContent}
       disable={isLoading}
       footer={footerContent}
-      isOpen={isOpen}
-      onClose={onClose}
+      isOpen={loginModal.isOpen}
+      onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
-      title="Register"
+      title="Login"
     />
   );
 };
 
-export { RegisterModal };
+export { LoginModal };
 
 const defaultValues = {
-  name: "",
   email: "",
   password: "",
 };

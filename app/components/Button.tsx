@@ -1,48 +1,49 @@
-'use client';
+"use client";
 import { FC } from "react";
 import { IconType } from "react-icons";
 
 type props = {
+  disable?: boolean;
   icon?: IconType;
-  isDisable?: boolean;
-  isOutline?: boolean;
-  isSmall?: boolean;
   label: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  outline?: boolean;
+  small?: boolean;
 };
 
 const Button: FC<props> = ({
+  disable,
   icon: Icon,
-  isDisable,
-  isOutline,
-  isSmall,
   label,
   onClick,
+  outline,
+  small,
 }): JSX.Element => {
   return (
     <button
       onClick={onClick}
-      disabled={isDisable}
+      disabled={disable}
       className={`
-            relative
-            disabled:opacity-70
+            active:opacity-70
+            active:scale-95
             disabled:cursor-not-allowed
-            rounded-lg
+            disabled:opacity-70
             hover:opacity-80
+            relative
+            rounded-lg
             transition
             w-full
             ${
-              isOutline
+              outline
                 ? "bg-white border-black text-black"
                 : "bg-rose-500 border-rose-500 text-white"
             }
             ${
-              isSmall
-                ? "py-1 text-sm font-light border"
-                : "py-3 text-md font-semibold border-2"
+              small
+                ? "font-light border py-1 text-sm"
+                : "border-2 font-semibold py-3 text-md"
             }
         `}
-      type="button"
     >
       {Icon && <Icon size={24} className="absolute left-4 top-3" />}
       {label}

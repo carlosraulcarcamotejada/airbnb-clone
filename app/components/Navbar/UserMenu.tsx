@@ -4,9 +4,11 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
 import { MenuItem } from "./MenuItem";
 import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
+import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
 
 const UserMenu: FC = (): JSX.Element => {
-  const {open} = useRegisterModalStore()
+  const loginModal = useLoginModalStore();
+  const registerModal = useRegisterModalStore();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -19,37 +21,35 @@ const UserMenu: FC = (): JSX.Element => {
         <div
           onClick={() => {}}
           className="
-                    hidden
-                    md:block
-                    text-sm
                     font-semibold
-                    py-3
-                    px-4
-                    rounded-full 
+                    hidden
                     hover:bg-neutral-100 
-                    transition 
+                    md:block
                     md:cursor-pointer
+                    px-4
+                    py-3
+                    rounded-full 
+                    text-sm
+                    transition 
                     "
         >
           Airbnb your home
         </div>
 
         <div
-          onClick={() => {
-            toggleOpen();
-          }}
+          onClick={toggleOpen}
           className="
-                    p-4 
-                    md:p-1 
-                    md:px-2 
                     border 
                     border-neutral-200 
                     flex 
-                    items-center
                     gap-3 
-                    rounded-full 
-                    md:cursor-pointer 
                     hover:shadow-md 
+                    items-center
+                    md:cursor-pointer 
+                    md:p-1 
+                    md:px-2 
+                    p-4 
+                    rounded-full 
                     transition
                     "
         >
@@ -62,28 +62,28 @@ const UserMenu: FC = (): JSX.Element => {
       {isOpen && (
         <div
           className="
-            absolute
-            rounded-xl
-            shadow-md
-            w-2/5
-            md:w-3/4
-            bg-white
-            overflow-hidden
-            top-12
-            right-0
-            text-sm
-            "
+                    absolute
+                    md:w-3/4
+                    overflow-hidden
+                    right-0
+                    rounded-xl
+                    shadow-md
+                    text-sm
+                    top-14
+                    w-2/5
+                   bg-white
+                    "
         >
           <div
             className="
-                flex
-                flex-col
-                md:cursor-pointer
-                "
+                      flex
+                      flex-col
+                      md:cursor-pointer
+                      "
           >
             <>
-              <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem onClick={open} label="Sing Up" />
+              <MenuItem onClick={loginModal.onOpen} label="Login" />
+              <MenuItem onClick={registerModal.onOpen} label="Sing Up" />
             </>
           </div>
         </div>

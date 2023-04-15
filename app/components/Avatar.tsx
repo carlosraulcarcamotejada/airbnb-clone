@@ -1,11 +1,18 @@
-'use client';
-import {FC} from 'react'
+"use client";
+import { FC } from "react";
 import Image from "next/image";
 
-const Avatar:FC = ():JSX.Element => {
+const Avatar: FC = (): JSX.Element => {
   return (
-    <Image priority src="/images/placeholder.jpeg" alt="avatar" height="30" width="30"  className='rounded-full ' />
-  )
-}
+    <Image
+      alt="avatar"
+      className="rounded-full"
+      height="30"
+      priority
+      src="/images/placeholder.jpeg"
+      width="30"
+    />
+  );
+};
 
-export  {Avatar}
+export { Avatar };

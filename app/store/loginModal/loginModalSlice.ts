@@ -5,8 +5,8 @@ const initialState = {
   isOpen: false,
 };
 
-export const registerModalSlice = createSlice({
-  name: "register",
+export const loginModalSlice = createSlice({
+  name: "login",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
@@ -19,6 +19,6 @@ export const registerModalSlice = createSlice({
   },
 });
 
-export const { close, open } = registerModalSlice.actions;
+export const { close, open } = loginModalSlice.actions;
 
-export default registerModalSlice.reducer;
+export default loginModalSlice.reducer;

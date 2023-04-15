@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/store";
-import { close, open } from "../store/registerModal/registerModalSlice";
+import { close, open } from "../store/loginModal/loginModalSlice";
 
-const useRegisterModalStore = () => {
+const useLoginModalStore = () => {
   const dispatch: AppDispatch = useDispatch();
-  const registerModal = useSelector((state: RootState) => state.registerModal);
+  const loginModal = useSelector((state: RootState) => state.loginModal);
 
   const onOpen = () => {
     dispatch(open());
@@ -16,11 +16,11 @@ const useRegisterModalStore = () => {
 
   return {
     //PROPERTIES
-    ...registerModal,
+    ...loginModal,
     //METHODS
-    onOpen,
     onClose,
+    onOpen,
   };
 };
 
-export { useRegisterModalStore };
+export { useLoginModalStore };

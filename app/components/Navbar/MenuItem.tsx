@@ -11,11 +11,11 @@ const MenuItem: FC<props> = ({ onClick, label }): JSX.Element => {
     <div
       onClick={onClick}
       className="
+                font-semibold
                 px-4
                 py-3
-              hover:bg-neutral-100
                 transition
-                font-semibold
+              hover:bg-neutral-100
                 "
     >
       {label}

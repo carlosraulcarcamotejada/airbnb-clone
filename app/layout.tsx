@@ -5,6 +5,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { ReduxProviders } from "./providers/ReduxProvider";
 import { RegisterModal } from "./components/modals/RegisterModal";
 import { ToasterProvider } from "./providers/ToasterProvider";
+import { LoginModal } from "./components/modals/LoginModal";
 
 export const metadata = {
   title: "Airbnb",
@@ -27,6 +28,7 @@ const RootLayout: FC<prop> = ({
       <body className={font.className}>
         <ReduxProviders>
           <ToasterProvider />
+          <LoginModal />
           <RegisterModal />
           <Navbar />
         </ReduxProviders>

@@ -13,13 +13,14 @@ import { Modal } from "./Modal";
 import { Heading } from "../Heading";
 import { Input } from "../inputs/Input";
 import { Button } from "../Button";
-import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
 import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const LoginModal: FC = (): JSX.Element => {
+  const router = useRouter();
   const registerModal = useRegisterModalStore();
   const loginModal = useLoginModalStore();
 
@@ -33,7 +34,23 @@ const LoginModal: FC = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    signIn('credentials',{...data});
+
+    signIn("credentials", {
+      ...data,
+      redirect: false,
+    }).then((callback) => {
+      setIsLoading(false);
+
+      if (callback?.ok) {
+        toast.success("Logged in");
+        router.refresh();
+        loginModal.onClose();
+      }
+
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+    });
   };
 
   const bodyContent = (

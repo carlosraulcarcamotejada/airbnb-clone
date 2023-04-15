@@ -125,7 +125,7 @@ const RegisterModal: FC = (): JSX.Element => {
         >
           <div>Aleready have an account?</div>
           <div
-            onClick={close}
+            onClick={onClose}
             className="
                       cursor-pointer
                       hover:underline

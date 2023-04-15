@@ -1,10 +1,11 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import bcryp from "bcrypt";
 import NextAuth, { AuthOptions } from "next-auth";
-import prisma from "@/app/libs/prismadb";
+import CredentialsProvider from "next-auth/providers/credentials";
 import githubProvider from "next-auth/providers/github";
 import googleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
-import bcryp from "bcrypt";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+
+import prisma from "@/app/libs/prismadb";
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -29,7 +30,7 @@ export const authOptions: AuthOptions = {
         }
         const user = await prisma.user.findUnique({
           where: {
-            email: credentials.email,
+            email: credentials.email
           },
         });
 

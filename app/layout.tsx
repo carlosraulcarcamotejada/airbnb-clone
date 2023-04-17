@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 import "./globals.css";
 import { Nunito } from "next/font/google";
 import { Navbar } from "./components/Navbar/Navbar";
-import { ReduxProviders } from "./providers/ReduxProvider";
+import { ReduxProvider } from "./providers/ReduxProvider";
 import { RegisterModal } from "./components/modals/RegisterModal";
 import { ToasterProvider } from "./providers/ToasterProvider";
 import { LoginModal } from "./components/modals/LoginModal";
@@ -26,12 +26,12 @@ const RootLayout: FC<prop> = ({
   return (
     <html className="select-none" lang="en">
       <body className={font.className}>
-        <ReduxProviders>
+        <ReduxProvider>
           <ToasterProvider />
           <LoginModal />
           <RegisterModal />
           <Navbar />
-        </ReduxProviders>
+        </ReduxProvider>
       </body>
     </html>
   );

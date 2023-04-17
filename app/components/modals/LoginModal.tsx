@@ -48,7 +48,7 @@ const LoginModal: FC = (): JSX.Element => {
       }
 
       if (callback?.error) {
-        toast.error(callback.error);
+        toast.error(callback?.error);
       }
     });
   };

@@ -1,11 +1,11 @@
 "use client";
 import { FC, ReactNode } from "react";
 
-type props = {
+interface Containerprops {
   children: ReactNode;
-};
+}
 
-const Container: FC<props> = ({ children }): JSX.Element => {
+const Container: FC<Containerprops> = ({ children }): JSX.Element => {
   return (
     <div
       className="

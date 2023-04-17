@@ -1,9 +1,9 @@
 import { FC } from "react";
 
-const Home:FC = ():JSX.Element => {
+const Page:FC = ():JSX.Element => {
   return (
     <div
-      className="grid place-content-center dark:bg-neutral-900
+      className="grid mt-36 place-content-center dark:bg-neutral-900
      text-indigo-300 text-7xl"
     >
       Hello Airbnb!
@@ -11,4 +11,4 @@ const Home:FC = ():JSX.Element => {
   );
 };
 
-export default Home;
+export default Page;

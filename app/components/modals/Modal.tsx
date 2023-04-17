@@ -3,7 +3,7 @@ import { FC, ReactElement, useState, useEffect, useCallback } from "react";
 import { IoMdClose } from "react-icons/io";
 import { Button } from "../Button";
 
-type props = {
+interface Modalprops {
   actionLabel: string;
   body?: ReactElement;
   footer?: ReactElement;
@@ -14,9 +14,9 @@ type props = {
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
   title?: string;
-};
+}
 
-const Modal: FC<props> = ({
+const Modal: FC<Modalprops> = ({
   actionLabel,
   isOpen,
   onClose,
@@ -56,7 +56,6 @@ const Modal: FC<props> = ({
 
   return (
     <div
-      id="main-modal"
       className="
                 bg-neutral-800/70
                 fixed
@@ -126,15 +125,18 @@ const Modal: FC<props> = ({
                         "
             >
               <button
-                onClick={() => {
-                  handleClose();
-                }}
+                onClick={handleClose}
                 className="
-                          absolute
+                          absolute          
+                          active:border
+                          active:border-neutral-300
                           border-0
+                          hover:border
+                          hover:border-neutral-300
                           hover:opacity-70
                           left-9
-                          p-1
+                          p-4
+                          rounded-md
                           transition
                           "
                 type="button"

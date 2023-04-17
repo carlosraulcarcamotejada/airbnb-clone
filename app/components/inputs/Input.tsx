@@ -4,7 +4,9 @@ import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
 import { BiHide, BiShow } from "react-icons/bi";
 
-type props = {
+type InputType = "password" | "text";
+
+interface InputProps {
   disable?: boolean;
   errors: FieldErrors;
   formatPrice?: boolean;
@@ -12,10 +14,10 @@ type props = {
   label: string;
   register: UseFormRegister<FieldValues>;
   required?: boolean;
-  type?: "password" | "text";
-};
+  type?: InputType;
+}
 
-const Input: FC<props> = ({
+const Input: FC<InputProps> = ({
   disable,
   errors,
   formatPrice,
@@ -25,12 +27,7 @@ const Input: FC<props> = ({
   required,
   type = "text",
 }): JSX.Element => {
-
-
-
-  const [hidePassword, setSidePassword] = useState<"text" | "password">(
-    "password"
-  );
+  const [hidePassword, setSidePassword] = useState<InputType>("password");
 
   const toggleHidePassword = () => {
     setSidePassword((hidePassword) => {
@@ -78,7 +75,7 @@ const Input: FC<props> = ({
                 }
                 `}
       />
-      {type === "password"  && (
+      {type === "password" && (
         <div
           onClick={toggleHidePassword}
           className="
@@ -88,14 +85,15 @@ const Input: FC<props> = ({
                     duration-200 
                     p-2 
                     rounded-full 
-                    text-neutral-500 
                     top-3.5 right-2.5 
-                    transition-all 
+                    transition-all
+                    text-neutral-400
+                    active:text-neutral-500
                     "
         >
           <BiHide
             size={24}
-            className={`${hidePassword === "password" ? "block" : "hidden"}`}
+            className={`${hidePassword === "password" ? "block" : "hidden"} `}
           />
           <BiShow
             size={24}

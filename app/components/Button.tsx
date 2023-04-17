@@ -2,16 +2,16 @@
 import { FC } from "react";
 import { IconType } from "react-icons";
 
-type props = {
+interface ButtonProps {
   disable?: boolean;
   icon?: IconType;
   label: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   outline?: boolean;
   small?: boolean;
-};
+}
 
-const Button: FC<props> = ({
+const Button: FC<ButtonProps> = ({
   disable,
   icon: Icon,
   label,

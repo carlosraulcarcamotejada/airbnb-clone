@@ -1,26 +1,25 @@
 "use client";
-import { FC, useCallback, useState } from "react";
+import { FC } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
+import { HiOutlineLogin } from "react-icons/hi";
+import { FiAtSign } from "react-icons/fi";
 import { Avatar } from "../Avatar";
 import { MenuItem } from "./MenuItem";
 import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
 import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
+import { Menu, Transition } from "@headlessui/react";
 
 const UserMenu: FC = (): JSX.Element => {
   const loginModal = useLoginModalStore();
   const registerModal = useRegisterModalStore();
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleOpen = useCallback(() => {
-    setIsOpen((isOpen) => !isOpen);
-  }, []);
 
   return (
-    <div className="relative">
-      <div className="flex items-center gap-3">
-        <div
-          onClick={() => {}}
-          className="
+    <Menu as="div" className="relative">
+      {({ open }) => (
+        <>
+          <div className="flex items-center gap-3">
+            <div
+              className="
                     font-semibold
                     hidden
                     hover:bg-neutral-100 
@@ -32,13 +31,12 @@ const UserMenu: FC = (): JSX.Element => {
                     text-sm
                     transition 
                     "
-        >
-          Airbnb your home
-        </div>
+            >
+              Airbnb your home
+            </div>
 
-        <div
-          onClick={toggleOpen}
-          className="
+            <Menu.Button
+              className="
                     border 
                     border-neutral-200 
                     flex 
@@ -52,43 +50,64 @@ const UserMenu: FC = (): JSX.Element => {
                     rounded-full 
                     transition
                     "
-        >
-          <AiOutlineMenu />
-          <div className="hidden md:block">
-            <Avatar />
+            >
+              <AiOutlineMenu />
+              <div className="hidden md:block">
+                <Avatar />
+              </div>
+            </Menu.Button>
           </div>
-        </div>
-      </div>
-      {isOpen && (
-        <div
-          className="
-                    absolute
-                    md:w-3/4
-                    overflow-hidden
-                    right-0
-                    rounded-xl
+
+          {/* MENU */}
+          <Transition 
+            show={open}
+            enter="transform transition duration-100 ease-in"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="transform transition duration-75 ease-out"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+            >
+            <Menu.Items
+              className="
+                    absolute 
+                    md:w-3/4 
+                    overflow-hidden 
+                    right-0 
+                    rounded-xl 
                     shadow-md
                     text-sm
-                    top-14
-                    w-2/5
-                   bg-white
+                    top-2
+                    w-[40vw]
+                  bg-white 
                     "
-        >
-          <div
-            className="
+              static
+            >
+              <div
+                className="
                       flex
                       flex-col
                       md:cursor-pointer
                       "
-          >
-            <>
-              <MenuItem onClick={loginModal.onOpen} label="Login" />
-              <MenuItem onClick={registerModal.onOpen} label="Sing Up" />
-            </>
-          </div>
-        </div>
+              >
+                <>
+                  <MenuItem
+                    icon={HiOutlineLogin}
+                    onClick={loginModal.onOpen}
+                    label="Login"
+                  />
+                  <MenuItem
+                    icon={FiAtSign}
+                    onClick={registerModal.onOpen}
+                    label="Sing Up"
+                  />
+                </>
+              </div>
+            </Menu.Items>
+          </Transition>
+        </>
       )}
-    </div>
+    </Menu>
   );
 };
 

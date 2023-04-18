@@ -1,6 +1,11 @@
 "use client";
-import { FC, useState } from "react";
-import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { FC, useState, useCallback } from "react";
+import {
+  FieldErrors,
+  FieldValues,
+  UseFormGetValues,
+  UseFormRegister,
+} from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
 import { BiHide, BiShow } from "react-icons/bi";
 
@@ -27,13 +32,13 @@ const Input: FC<InputProps> = ({
   required,
   type = "text",
 }): JSX.Element => {
-  const [hidePassword, setSidePassword] = useState<InputType>("password");
+  const [hidePassword, setHidePassword] = useState<InputType>("password");
 
-  const toggleHidePassword = () => {
-    setSidePassword((hidePassword) => {
+  const toggleHidePassword = useCallback(() => {
+    setHidePassword((hidePassword) => {
       return hidePassword === "text" ? "password" : "text";
     });
-  };
+  }, []);
 
   return (
     <div className="w-full relative">
@@ -52,7 +57,7 @@ const Input: FC<InputProps> = ({
         id={id}
         disabled={disable}
         {...register(id, { required })}
-        placeholder=" "
+       
         type={type === "text" ? "text" : hidePassword}
         className={`
                 bg-white

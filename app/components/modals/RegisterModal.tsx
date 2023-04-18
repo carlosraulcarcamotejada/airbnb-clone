@@ -16,6 +16,7 @@ import { Input } from "../inputs/Input";
 import { Button } from "../Button";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 const RegisterModal: FC = (): JSX.Element => {
   const { onClose, isOpen } = useRegisterModalStore();
@@ -98,13 +99,13 @@ const RegisterModal: FC = (): JSX.Element => {
       <Button
         icon={FcGoogle}
         label="Continue with Google"
-        onClick={() => {}}
+        onClick={() => signIn("google")}
         outline
       />
       <Button
         icon={AiFillGithub}
         label="Continue with Github"
-        onClick={() => {}}
+        onClick={() => signIn("github")}
         outline
       />
       <div

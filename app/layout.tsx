@@ -6,6 +6,7 @@ import { ReduxProvider } from "./providers/ReduxProvider";
 import { RegisterModal } from "./components/modals/RegisterModal";
 import { ToasterProvider } from "./providers/ToasterProvider";
 import { LoginModal } from "./components/modals/LoginModal";
+import { getCurrentUser } from "./actions/getCurrentUser";
 
 export const metadata = {
   title: "Airbnb",
@@ -14,15 +15,13 @@ export const metadata = {
 
 const font = Nunito({ subsets: ["latin"] });
 
-type prop = {
-  children: JSX.Element | JSX.Element[];
-};
-
-const RootLayout: FC<prop> = ({
+export default async function RootLayout({
   children,
 }: {
   children: ReactNode;
-}): JSX.Element => {
+}) {
+  const currentUser = await getCurrentUser();
+
   return (
     <html className="select-none" lang="en">
       <body className={font.className}>
@@ -30,11 +29,9 @@ const RootLayout: FC<prop> = ({
           <ToasterProvider />
           <LoginModal />
           <RegisterModal />
-          <Navbar />
+          <Navbar currentUser={currentUser} />
         </ReduxProvider>
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

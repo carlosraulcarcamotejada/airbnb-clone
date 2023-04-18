@@ -11,7 +11,8 @@ const Container: FC<Containerprops> = ({ children }): JSX.Element => {
       className="
                 max-w-[2520px] 
                 md:px-10 
-                mx-auto px-4 
+                mx-auto 
+                px-4 
                 sm:px-2 
                 xl:px-20
                 "

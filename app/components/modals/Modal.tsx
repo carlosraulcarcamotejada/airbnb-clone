@@ -128,11 +128,9 @@ const Modal: FC<Modalprops> = ({
                 onClick={handleClose}
                 className="
                           absolute          
-                          active:border
-                          active:border-neutral-300
+                          active:bg-neutral-200
                           border-0
-                          hover:border
-                          hover:border-neutral-300
+                          hover:bg-neutral-100
                           hover:opacity-70
                           left-9
                           p-4

@@ -29,6 +29,7 @@ const LoginModal: FC = (): JSX.Element => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<FieldValues>({ defaultValues });
 
@@ -99,13 +100,13 @@ const LoginModal: FC = (): JSX.Element => {
       <Button
         icon={FcGoogle}
         label="Continue with Google"
-        onClick={() => {}}
+        onClick={() => signIn("google")}
         outline
       />
       <Button
         icon={AiFillGithub}
         label="Continue with Github"
-        onClick={() => {}}
+        onClick={() => signIn("github")}
         outline
       />
       <div

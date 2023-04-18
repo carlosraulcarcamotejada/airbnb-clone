@@ -4,8 +4,16 @@ import { Logo } from "./Logo";
 import { Search } from "./Search";
 import { Container } from "../Container";
 import { UserMenu } from "./UserMenu";
+import { SafeUser } from "@/app/types";
+import { Categories } from "./Categories";
 
-const Navbar: FC = (): JSX.Element => {
+
+interface NavbarProps {
+  currentUser?: SafeUser | null;
+}
+
+
+const Navbar: FC<NavbarProps> = ({currentUser}): JSX.Element => {
   return (
     <div
       className="
@@ -30,9 +38,10 @@ const Navbar: FC = (): JSX.Element => {
         >
           <Logo />
           <Search />
-          <UserMenu />
+          <UserMenu currentUser={currentUser} />
         </div>
       </Container>
+      <Categories />
     </div>
   );
 };

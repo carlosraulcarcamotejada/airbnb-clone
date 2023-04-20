@@ -15,15 +15,18 @@ const MenuItem: FC<props> = ({ onClick, label, icon: Icon }): JSX.Element => {
       {({ active }) => (
         <div
           className={`
-                      flex
-                      font-semibold
-                      gap-3
-                      items-center
-                      px-4
-                      py-3
-                      transition
+                    ${active ? "bg-neutral-100 text-neutral-600" : ""}
+                    flex
+                    font-semibold
+                    gap-3
+                    items-center
+                    px-4
+                    py-3
                     text-neutral-500
-                    ${active && "bg-neutral-100 text-neutral-600"}`}
+                    transition
+                  active:bg-neutral-200
+                    `
+                  }
         >
           {Icon && <Icon size={18} />}
           <div>{label}</div>

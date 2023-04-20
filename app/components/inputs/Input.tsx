@@ -1,13 +1,15 @@
 "use client";
-import { FC, useState, useCallback } from "react";
+import { FC, useState, useCallback, useEffect } from "react";
 import {
   FieldErrors,
   FieldValues,
   UseFormGetValues,
   UseFormRegister,
+  UseFormWatch,
 } from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
 import { BiHide, BiShow } from "react-icons/bi";
+import { useForm } from "react-hook-form";
 
 type InputType = "password" | "text";
 
@@ -20,6 +22,7 @@ interface InputProps {
   register: UseFormRegister<FieldValues>;
   required?: boolean;
   type?: InputType;
+  watch: UseFormWatch<FieldValues>;
 }
 
 const Input: FC<InputProps> = ({
@@ -31,8 +34,11 @@ const Input: FC<InputProps> = ({
   register,
   required,
   type = "text",
+  watch,
 }): JSX.Element => {
   const [hidePassword, setHidePassword] = useState<InputType>("password");
+
+  const [inputValue] = watch([id]);
 
   const toggleHidePassword = useCallback(() => {
     setHidePassword((hidePassword) => {
@@ -56,44 +62,45 @@ const Input: FC<InputProps> = ({
       <input
         id={id}
         disabled={disable}
+        placeholder=" "
         {...register(id, { required })}
-       
         type={type === "text" ? "text" : hidePassword}
         className={`
                 bg-white
-                border-2
-                disabled:cursor-not-allowed
-                disabled:opacity-70
-                font-light
-                outline-none
-                p-4
-                peer
-                pt-6
-                rounded-md
-                transition
-                w-full
-                ${formatPrice ? "pl-9" : "pl-4"}
-                ${
-                  errors[id]
-                    ? "border-rose-500 focus:border-rose-500"
-                    : "border-neutral-300 focus:border-black"
-                }
+                  border-2
+                  disabled:cursor-not-allowed
+                  disabled:opacity-70
+                  font-light
+                  outline-none
+                  p-4
+                  peer
+                  pt-6
+                  rounded-md
+                  transition
+                  w-full
+                  ${formatPrice ? "pl-9" : "pl-4"}
+                  ${
+                    errors[id]
+                      ? "border-rose-500 focus:border-rose-500"
+                      : "border-neutral-300 focus:border-black"
+                  }
                 `}
       />
-      {type === "password" && (
+      {type === "password" && inputValue.length > 0 && (
         <div
           onClick={toggleHidePassword}
           className="
                     absolute 
                     active:bg-slate-100 
                     active:scale-95
+                    active:text-neutral-500
                     duration-200 
                     p-2 
+                    right-2.5 
                     rounded-full 
-                    top-3.5 right-2.5 
-                    transition-all
                     text-neutral-400
-                    active:text-neutral-500
+                    top-3.5 
+                    transition-all
                     "
         >
           <BiHide
@@ -107,21 +114,22 @@ const Input: FC<InputProps> = ({
         </div>
       )}
       <label
+        htmlFor={id}
         className={`
-                    -translate-y-3
-                    ${errors[id] ? "text-rose-500" : "text-zinc-400"}
-                    ${formatPrice ? "left-9" : "left-4"}
-                    absolute
-                    duration-150
-                    origin-top-left
-                    peer-focus:-translate-y-4
-                    peer-focus:scale-75
-                    peer-placeholder-shown:scale-100
-                    peer-placeholder-shown:translate-y-0
-                    text-md
-                    top-5
-                    transform
-                    z-10
+                  -translate-y-3
+                  ${errors[id] ? "text-rose-500" : "text-zinc-400"}
+                  ${formatPrice ? "left-9" : "left-4"}
+                  absolute
+                  duration-150
+                  origin-top-left
+                  peer-focus:-translate-y-4
+                  peer-focus:scale-75
+                  peer-placeholder-shown:scale-100
+                  peer-placeholder-shown:translate-y-0
+                  text-md
+                  top-5
+                  transform
+                  z-10
                 `}
       >
         {label}

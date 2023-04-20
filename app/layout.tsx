@@ -6,7 +6,7 @@ import { ReduxProvider } from "./providers/ReduxProvider";
 import { RegisterModal } from "./components/modals/RegisterModal";
 import { ToasterProvider } from "./providers/ToasterProvider";
 import { LoginModal } from "./components/modals/LoginModal";
-import { getCurrentUser } from "./actions/getCurrentUser";
+import  getCurrentUser  from "./actions/getCurrentUser";
 
 export const metadata = {
   title: "Airbnb",

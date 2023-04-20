@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
 import { MenuItem } from "./MenuItem";
@@ -18,12 +18,12 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
   const registerModal = useRegisterModalStore();
 
   return (
-    <Menu as="div" className="relative">
+    <Menu as="div" className="relative ">
       {({ open }) => (
         <>
           <div className="flex items-center gap-3">
             <div
-              onClick={()=>{console.log('Hello!')}}
+              onClick={() => {}}
               className="
                         font-semibold
                         hidden
@@ -43,6 +43,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
             <Menu.Button
               className={`
                     ${open ? "bg-neutral-100" : ""}
+                    active:bg-neutral-200
                     border
                     border-neutral-200 
                     flex 
@@ -76,6 +77,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
             <Menu.Items
               className="
                         absolute 
+                        bg-white
                         border
                         md:w-3/4 
                         overflow-hidden 
@@ -85,10 +87,10 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
                         text-sm
                         top-2
                         w-[40vw]
-                      bg-white
                         "
-              static
+              
             >
+              
               <div
                 className="
                           flex

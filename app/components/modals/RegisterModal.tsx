@@ -1,22 +1,16 @@
 "use client";
 import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
 import { FC, useState } from "react";
-import {
-  FieldValues,
-  RegisterOptions,
-  SubmitHandler,
-  useForm,
-  UseFormRegisterReturn,
-} from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { Modal } from "./Modal";
 import { Heading } from "../Heading";
 import { Input } from "../inputs/Input";
 import { Button } from "../Button";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { signIn } from "next-auth/react";
+import { Modal } from "./Modal";
 
 const RegisterModal: FC = (): JSX.Element => {
   const { onClose, isOpen } = useRegisterModalStore();
@@ -26,6 +20,7 @@ const RegisterModal: FC = (): JSX.Element => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<FieldValues>({ defaultValues });
 
@@ -65,6 +60,7 @@ const RegisterModal: FC = (): JSX.Element => {
         label="Email"
         register={register}
         required
+        watch={watch}
       />
       <Input
         disable={isLoading}
@@ -73,6 +69,7 @@ const RegisterModal: FC = (): JSX.Element => {
         label="Name"
         register={register}
         required
+        watch={watch}
       />
       <Input
         disable={isLoading}
@@ -82,6 +79,7 @@ const RegisterModal: FC = (): JSX.Element => {
         register={register}
         required
         type="password"
+        watch={watch}
       />
     </div>
   );
@@ -141,6 +139,7 @@ const RegisterModal: FC = (): JSX.Element => {
   );
 
   return (
+
     <Modal
       actionLabel="Continue"
       body={bodyContent}

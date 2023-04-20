@@ -1,9 +1,10 @@
 "use client";
-import { FC, ReactElement, useState, useEffect, useCallback } from "react";
+import { FC, Fragment, ReactElement } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 import { IoMdClose } from "react-icons/io";
 import { Button } from "../Button";
 
-interface Modalprops {
+interface MyModalProps {
   actionLabel: string;
   body?: ReactElement;
   footer?: ReactElement;
@@ -16,7 +17,7 @@ interface Modalprops {
   title?: string;
 }
 
-const Modal: FC<Modalprops> = ({
+const Modal: FC<MyModalProps> = ({
   actionLabel,
   isOpen,
   onClose,
@@ -28,153 +29,88 @@ const Modal: FC<Modalprops> = ({
   secondaryActionLabel,
   title,
 }): JSX.Element => {
-  const [showModal, setShowModal] = useState(isOpen);
-
-  useEffect(() => {
-    setShowModal(isOpen);
-  }, [isOpen]);
-
-  const handleClose = useCallback(() => {
-    if (disable) return;
-    setShowModal(false);
-    setTimeout(() => {
-      onClose();
-    }, 300);
-  }, [disable, onClose]);
-
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = () => {
     if (disable) return;
     onSubmit();
-  }, [disable, onSubmit]);
+  };
 
-  const handleSecondaryAction = useCallback(() => {
+  const handleSecondaryAction = () => {
     if (disable || !secondaryAction) return;
     secondaryAction();
-  }, [disable, secondaryAction]);
+  };
 
   if (!isOpen) return <></>;
 
   return (
-    <div
-      className="
-                bg-neutral-800/70
-                fixed
-                flex
-                focus:outline-none
-                inset-0
-                items-center
-                justify-center
-                outline-none
-                overflow-x-hidden
-                overflow-y-auto
-                z-50
-                "
-    >
-      <div
-        className="
-                  h-full
-                  lg:w-3/6
-                  md:h-auto
-                  md:w-4/6
-                  mx-auto
-                  my-6
-                  relative
-                  w-full
-                  xl:w-2/5
-                  "
-      >
-        {/*CONTENT*/}
-        <div
-          className={`
-                      duration-300
-                      h-full
-                      translate
-                      ${
-                        showModal
-                          ? "translate-y-0 opacity-100"
-                          : "translate-y-full opacity-0"
-                      }
-                    `}
+    <Transition  appear show={isOpen} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={onClose}>
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
         >
-          <div
-            className="
-                      bg-white
-                      flex
-                      flex-col
-                      focus:outline-none
-                      h-full
-                      md:h-auto
-                      outline-none
-                      relative
-                      rounded-lg
-                      shadow-lg
-                      translate
-                      w-full
-                      "
-          >
-            {/*HEADER*/}
-            <div
-              className="
-                        border-b
-                        flex
-                        items-center
-                        justify-center
-                        p-6
-                        relative
-                        rounded-t
-                        "
+          <div className="fixed inset-0 bg-black bg-opacity-60" />
+        </Transition.Child>
+
+        <div className="fixed inset-0 overflow-y-auto ">
+          <div className="flex min-h-full items-center justify-center text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
             >
-              <button
-                onClick={handleClose}
-                className="
-                          absolute          
-                          active:bg-neutral-200
-                          border-0
-                          hover:bg-neutral-100
-                          hover:opacity-70
-                          left-9
-                          p-4
-                          rounded-md
-                          transition
-                          "
-                type="button"
-              >
-                <IoMdClose size={18} />
-              </button>
-              <div className="font-semibold text-lg">{title}</div>
-            </div>
-            {/*BODY*/}
-            <div className="flex-auto p-6 relative ">{body}</div>
-            <div className="flex flex-col gap-2 p-6">
-              {/*FOOTER*/}
-              <div
-                className="
-                          flex
-                          gap-4
-                          items-center
-                          w-full
-                          "
-              >
-                {secondaryAction && secondaryActionLabel && (
-                  <Button
-                    outline
-                    label={secondaryActionLabel || ""}
-                    disable={disable}
-                    onClick={handleSecondaryAction}
-                  />
-                )}
-                <Button
-                  label={actionLabel}
-                  disable={disable}
-                  onClick={handleSubmit}
-                />
-              </div>
-              {footer}
-            </div>
+              <Dialog.Panel className="bg-white flex flex-col focus:outline-none h-full md:h-auto outline-none relative translate md:rounded-lg shadow-lg lg:w-3/6  md:w-4/6 mx-auto   w-full xl:w-2/5">
+                {/*HEADER*/}
+                <Dialog.Title
+                  className="border-b flex items-center justify-center p-6 relative"
+                  as="div"
+                >
+                  <button
+                    onClick={onClose}
+                    className="absolute active:bg-neutral-200  hover:bg-neutral-100 hover:opacity-70 left-9 transition p-4 rounded-md"
+                    type="button"
+                  >
+                    <IoMdClose size={18} />
+                  </button>
+                  <div className="font-semibold text-lg">{title}</div>
+                </Dialog.Title>
+                <div className="mt-2">
+                  {/*BODY*/}
+                  <div className="flex-auto p-6 relative ">{body}</div>
+                  <div className="flex flex-col gap-2 p-6">
+                    {/*FOOTER*/}
+                    <div className="flex gap-4 items-center w-full">
+                      {secondaryAction && secondaryActionLabel && (
+                        <Button
+                          outline
+                          label={secondaryActionLabel || ""}
+                          disable={disable}
+                          onClick={handleSecondaryAction}
+                        />
+                      )}
+                      <Button
+                        label={actionLabel}
+                        disable={disable}
+                        onClick={handleSubmit}
+                      />
+                    </div>
+                    {footer}
+                  </div>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
           </div>
         </div>
-      </div>
-    </div>
+      </Dialog>
+    </Transition>
   );
 };
 

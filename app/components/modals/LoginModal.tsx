@@ -9,19 +9,17 @@ import {
 } from "react-hook-form";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { Modal } from "./Modal";
 import { Heading } from "../Heading";
 import { Input } from "../inputs/Input";
 import { Button } from "../Button";
 import { toast } from "react-hot-toast";
 import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
-import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Modal } from "./Modal";
 
 const LoginModal: FC = (): JSX.Element => {
   const router = useRouter();
-  const registerModal = useRegisterModalStore();
   const loginModal = useLoginModalStore();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +27,7 @@ const LoginModal: FC = (): JSX.Element => {
   const {
     register,
     handleSubmit,
-    getValues,
+    watch,
     formState: { errors },
   } = useForm<FieldValues>({ defaultValues });
 
@@ -74,6 +72,7 @@ const LoginModal: FC = (): JSX.Element => {
         label="Email"
         register={register}
         required
+        watch={watch}
       />
       <Input
         disable={isLoading}
@@ -83,6 +82,7 @@ const LoginModal: FC = (): JSX.Element => {
         register={register}
         required
         type="password"
+        watch={watch}
       />
     </div>
   );

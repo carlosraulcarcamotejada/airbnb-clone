@@ -1,29 +1,30 @@
-import { FC, ReactNode } from "react";
 import "./globals.css";
 import { Nunito } from "next/font/google";
-import { Navbar } from "./components/Navbar/Navbar";
+import getCurrentUser from "./actions/getCurrentUser";
 import { ReduxProvider } from "./providers/ReduxProvider";
-import { RegisterModal } from "./components/modals/RegisterModal";
 import { ToasterProvider } from "./providers/ToasterProvider";
 import { LoginModal } from "./components/modals/LoginModal";
-import  getCurrentUser  from "./actions/getCurrentUser";
+import { RegisterModal } from "./components/modals/RegisterModal";
+import { Navbar } from "./components/Navbar/Navbar";
 
 export const metadata = {
   title: "Airbnb",
-  description: "A clone of Airbnb",
+  description: "Airbnb Clone",
 };
 
-const font = Nunito({ subsets: ["latin"] });
+const font = Nunito({
+  subsets: ["latin"],
+});
 
 export default async function RootLayout({
   children,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
 }) {
   const currentUser = await getCurrentUser();
 
   return (
-    <html className="select-none" lang="en">
+    <html lang="en">
       <body className={font.className}>
         <ReduxProvider>
           <ToasterProvider />

@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useCallback } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
 import { MenuItem } from "./MenuItem";
@@ -8,6 +8,7 @@ import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
 import { Menu, Transition } from "@headlessui/react";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
+import { useRentModalStore } from "@/app/hooks/useRentModalStore";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -16,6 +17,13 @@ interface UserMenuProps {
 const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
   const loginModal = useLoginModalStore();
   const registerModal = useRegisterModalStore();
+  const rentModal = useRentModalStore();
+
+  const onRent = useCallback(() => {
+    if (!currentUser) return loginModal.onOpen();
+    //Open rent modal
+    rentModal.onOpen();
+  }, [currentUser, loginModal, rentModal]);
 
   return (
     <Menu as="div" className="relative ">
@@ -23,7 +31,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
         <>
           <div className="flex items-center gap-3">
             <div
-              onClick={() => {}}
+              onClick={onRent}
               className="
                         font-semibold
                         hidden
@@ -42,11 +50,12 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
 
             <Menu.Button
               className={`
+                    ${!open ? "hover:bg-neutral-50" : ""}
                     ${open ? "bg-neutral-100" : ""}
                     active:bg-neutral-200
                     border
                     border-neutral-200 
-                    flex 
+                    flex
                     gap-3 
                     items-center
                     md:cursor-pointer 
@@ -88,9 +97,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
                         top-2
                         w-[40vw]
                         "
-              
             >
-              
               <div
                 className="
                           flex
@@ -104,7 +111,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
                     <MenuItem onClick={() => {}} label="My Favorites" />
                     <MenuItem onClick={() => {}} label="My Reservations" />
                     <MenuItem onClick={() => {}} label="My Properties" />
-                    <MenuItem onClick={() => {}} label="Airbnb my home" />
+                    <MenuItem onClick={rentModal.onOpen} label="Airbnb my home" />
                     <hr />
                     <MenuItem onClick={signOut} label="Logout" />
                   </>

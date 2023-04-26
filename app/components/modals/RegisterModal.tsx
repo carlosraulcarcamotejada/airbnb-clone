@@ -1,6 +1,6 @@
 "use client";
 import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
-import { FC, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
@@ -11,9 +11,12 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { Modal } from "./Modal";
+import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
 
 const RegisterModal: FC = (): JSX.Element => {
-  const { onClose, isOpen } = useRegisterModalStore();
+  
+  const loginModal = useLoginModalStore();
+  const registerModal = useRegisterModalStore();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,7 +32,7 @@ const RegisterModal: FC = (): JSX.Element => {
     axios
       .post("/api/register", data)
       .then(() => {
-        onClose();
+        registerModal.onClose;
         toast.success("User saved succesfully");
       })
       .catch((error) => {
@@ -39,6 +42,11 @@ const RegisterModal: FC = (): JSX.Element => {
         setIsLoading(false);
       });
   };
+
+  const toggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div
@@ -124,7 +132,7 @@ const RegisterModal: FC = (): JSX.Element => {
         >
           <div>Aleready have an account?</div>
           <div
-            onClick={onClose}
+            onClick={toggle}
             className="
                       cursor-pointer
                       hover:underline
@@ -145,8 +153,8 @@ const RegisterModal: FC = (): JSX.Element => {
       body={bodyContent}
       disable={isLoading}
       footer={footerContent}
-      isOpen={isOpen}
-      onClose={onClose}
+      isOpen={registerModal.isOpen}
+      onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       title="Register"
     />

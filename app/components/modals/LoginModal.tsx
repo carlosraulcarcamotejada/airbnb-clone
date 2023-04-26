@@ -1,12 +1,6 @@
 "use client";
-import { FC, useState } from "react";
-import {
-  FieldValues,
-  RegisterOptions,
-  SubmitHandler,
-  useForm,
-  UseFormRegisterReturn,
-} from "react-hook-form";
+import { FC, useCallback, useState } from "react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { Heading } from "../Heading";
@@ -17,11 +11,12 @@ import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Modal } from "./Modal";
+import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
 
 const LoginModal: FC = (): JSX.Element => {
   const router = useRouter();
   const loginModal = useLoginModalStore();
-
+  const registerModal = useRegisterModalStore();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -51,6 +46,11 @@ const LoginModal: FC = (): JSX.Element => {
       }
     });
   };
+
+  const toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div
@@ -125,16 +125,16 @@ const LoginModal: FC = (): JSX.Element => {
                     justify-center
                     "
         >
-          <div>Aleready have an account?</div>
+          <div>First time using Airbnb?</div>
           <div
-            onClick={loginModal.onClose}
+            onClick={toggle}
             className="
                       cursor-pointer
                       hover:underline
                     text-neutral-800
                       "
           >
-            Login
+            Create an account
           </div>
         </div>
       </div>

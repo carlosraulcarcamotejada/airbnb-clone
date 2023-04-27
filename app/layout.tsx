@@ -25,7 +25,7 @@ export default async function RootLayout({
   const currentUser = await getCurrentUser();
 
   return (
-    <html lang="en">
+    <html className="select-none" lang="en">
       <body className={font.className}>
         <ReduxProvider>
           <ToasterProvider />

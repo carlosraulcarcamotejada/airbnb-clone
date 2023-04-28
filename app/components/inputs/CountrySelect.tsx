@@ -1,12 +1,11 @@
 "use client";
 import { FC } from "react";
-import Select from "react-select";
-import { OptionLabel } from "./OptionLabel";
+import Select, { Theme } from "react-select";
 import { Country, useCountries } from "@/app/hooks/useCountries";
 
 interface CountrySelectProps {
   onChange: (value: Country) => void;
-  value?: Country;
+  value: Country;
 }
 
 const CountrySelect: FC<CountrySelectProps> = ({
@@ -18,23 +17,40 @@ const CountrySelect: FC<CountrySelectProps> = ({
   return (
     <div>
       <Select
-        classNames={{
-          control: () => "p-3 border-2",
-          input: () => "text-lg",
-          option: () => "text-lg",
-        }}
+        classNames={classNames}
         formatOptionLabel={(option) => <OptionLabel option={option} />}
         isClearable
         onChange={(value) => onChange(value as Country)}
         options={getAll()}
         placeholder="Anywhere"
-        theme={(theme) => ({
-          ...theme,
-          borderRadius: 6,
-          colors: { ...theme.colors, primary: "black", primary25: "#ffe4e6" },
-        })}
+        theme={theme}
         value={value}
       />
+    </div>
+  );
+};
+
+const classNames = {
+  control: () => "p-3 border-2",
+  input: () => "text-lg",
+  option: () => "text-lg",
+}
+
+const theme = (theme: Theme) => ({
+  ...theme,
+  borderRadius: 6,
+  colors: { ...theme.colors, primary: "black", primary25: "#ffe4e6" },
+})
+
+
+const OptionLabel: FC<{ option: Country;}> = ({ option }): JSX.Element => {
+  return (
+    <div className="flex items-center gap-3">
+      <div>{option.flag}</div>
+      <div>
+        {option.label},
+        <span className="text-neutral-500 ml-1">{option.region}</span>
+      </div>
     </div>
   );
 };

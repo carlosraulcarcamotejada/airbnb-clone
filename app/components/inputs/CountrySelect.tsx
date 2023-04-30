@@ -34,16 +34,15 @@ const classNames = {
   control: () => "p-3 border-2",
   input: () => "text-lg",
   option: () => "text-lg",
-}
+};
 
 const theme = (theme: Theme) => ({
   ...theme,
   borderRadius: 6,
   colors: { ...theme.colors, primary: "black", primary25: "#ffe4e6" },
-})
+});
 
-
-const OptionLabel: FC<{ option: Country;}> = ({ option }): JSX.Element => {
+const OptionLabel: FC<{ option: Country }> = ({ option }): JSX.Element => {
   return (
     <div className="flex items-center gap-3">
       <div>{option.flag}</div>

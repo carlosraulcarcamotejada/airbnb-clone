@@ -1,17 +1,15 @@
 "use client";
-import { FC, useState, useCallback, useEffect } from "react";
+import { FC, useState, useCallback } from "react";
 import {
   FieldErrors,
   FieldValues,
-  UseFormGetValues,
   UseFormRegister,
   UseFormWatch,
 } from "react-hook-form";
 import { BiDollar } from "react-icons/bi";
 import { BiHide, BiShow } from "react-icons/bi";
-import { useForm } from "react-hook-form";
 
-type InputType = "password" | "text";
+type InputType = "password" | "text" | "number";
 
 interface InputProps {
   disable?: boolean;
@@ -22,7 +20,7 @@ interface InputProps {
   register: UseFormRegister<FieldValues>;
   required?: boolean;
   type?: InputType;
-  watch: UseFormWatch<FieldValues>;
+  watch?: UseFormWatch<FieldValues>;
 }
 
 const Input: FC<InputProps> = ({
@@ -38,12 +36,16 @@ const Input: FC<InputProps> = ({
 }): JSX.Element => {
   const [hidePassword, setHidePassword] = useState<InputType>("password");
 
-  const [inputValue] = watch([id]);
+  let inputValue = "";
+  if (watch) {
+    [inputValue] = watch([id]);
+  }
 
   const toggleHidePassword = useCallback(() => {
-    setHidePassword((hidePassword) => {
-      return hidePassword === "text" ? "password" : "text";
+    setHidePassword((currentHidePassword) => {
+      return currentHidePassword === "password" ? "text" : "password";
     });
+
   }, []);
 
   return (
@@ -64,7 +66,7 @@ const Input: FC<InputProps> = ({
         disabled={disable}
         placeholder=" "
         {...register(id, { required })}
-        type={type === "text" ? "text" : hidePassword}
+        type={type === "password" ? hidePassword : type}
         className={`
                 bg-white
                   border-2

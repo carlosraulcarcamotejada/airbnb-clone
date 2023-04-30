@@ -7,7 +7,6 @@ import { BsSnow } from "react-icons/bs";
 import {
   GiBarn,
   GiBoatFishing,
-  GiCactus,
   GiCastle,
   GiCaveEntrance,
   GiForestCamp,
@@ -38,7 +37,7 @@ export const categories: Category[] = [
     description: "This property has windmills",
   },
   {
-    label: "Moder",
+    label: "Modern",
     icon: MdOutlineVilla,
     description: "This property is modern",
   },

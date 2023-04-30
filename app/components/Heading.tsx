@@ -2,13 +2,13 @@
 import { FC } from "react";
 
 interface HeadingProps {
-  center: boolean;
+  center?: boolean;
   subtitle: string;
   title: string;
 }
 
 const Heading: FC<HeadingProps> = ({
-  center,
+  center = false,
   subtitle,
   title,
 }): JSX.Element => {

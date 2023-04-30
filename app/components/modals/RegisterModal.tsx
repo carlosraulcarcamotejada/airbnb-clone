@@ -14,7 +14,6 @@ import { Modal } from "./Modal";
 import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
 
 const RegisterModal: FC = (): JSX.Element => {
-  
   const loginModal = useLoginModalStore();
   const registerModal = useRegisterModalStore();
 
@@ -24,23 +23,22 @@ const RegisterModal: FC = (): JSX.Element => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<FieldValues>({ defaultValues });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsLoading(true);
-    axios
-      .post("/api/register", data)
-      .then(() => {
-        registerModal.onClose;
-        toast.success("User saved succesfully");
-      })
-      .catch((error) => {
-        toast.error("Something went wrong");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      setIsLoading(true);
+      await axios.post("/api/register", data);
+      reset();
+      registerModal.onClose();
+      toast.success("User saved succesfully");
+    } catch (error) {
+      toast.error("Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const toggle = useCallback(() => {
@@ -147,7 +145,6 @@ const RegisterModal: FC = (): JSX.Element => {
   );
 
   return (
-
     <Modal
       actionLabel="Continue"
       body={bodyContent}

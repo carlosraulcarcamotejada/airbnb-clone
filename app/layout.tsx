@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Nunito } from "next/font/google";
-import getCurrentUser from "./actions/getCurrentUser";
+import {getCurrentUser} from "./actions/getCurrentUser";
 import { ReduxProvider } from "./providers/ReduxProvider";
 import { ToasterProvider } from "./providers/ToasterProvider";
 import { LoginModal } from "./components/modals/LoginModal";

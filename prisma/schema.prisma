@@ -11,67 +11,65 @@ datasource db {
 }
 
 model User {
-  id              String @id @default(auto()) @map("_id") @db.ObjectId
-  name            String?
-  email           String?   @unique
-  emailVerified   DateTime?
-  image           String?
-  hashedPassword  String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  favoriteIds     String[] @db.ObjectId
 
   accounts Account[]
+  createdAt       DateTime @default(now())
+  email           String?   @unique
+  emailVerified   DateTime?
+  favoriteIds     String[] @db.ObjectId
+  hashedPassword  String?
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  image           String?
   listings Listing[]
+  name            String?
   reservations Reservation[]
+  updatedAt       DateTime @updatedAt
 }
 
 model Account {
+
+
+  @@unique([provider, providerAccountId])
+  access_token       String?  @db.String
+  expires_at         Int?
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId             String   @db.ObjectId
-  type               String
+  id_token           String?  @db.String
   provider           String
   providerAccountId  String
   refresh_token      String?  @db.String
-  access_token       String?  @db.String
-  expires_at         Int?
-  token_type         String?
   scope              String?
-  id_token           String?  @db.String
   session_state      String?
-
+  token_type         String?
+  type               String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
+  userId             String   @db.ObjectId
 }
 
 model Listing {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  description String
-  imageSrc String
-  createdAt DateTime @default(now())
-  category  String
-  roomCount Int
   bathroomCount Int
+  category  String
+  createdAt DateTime @default(now())
+  description String
   guestCount Int
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  imageSrc String
   locationValue String
-  userId String @db.ObjectId
   price Int
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
+  roomCount Int
+  title String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @db.ObjectId
 }
 
 model Reservation {
+  createdAt DateTime @default(now())
+  endDate DateTime
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
   listingId String @db.ObjectId  
   startDate DateTime
-  endDate DateTime
   totalPrice Int
-  createdAt DateTime @default(now())
-
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  userId String @db.ObjectId
 }

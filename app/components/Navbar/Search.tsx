@@ -13,9 +13,9 @@ const Search: FC = (): JSX.Element => {
                 md:w-auto 
                 py-2 
                 rounded-full 
-                shadow-sm 
+                shadow-sm
                 transition 
-                w-full 
+                w-full
                 "
     >
       <div
@@ -63,6 +63,8 @@ const Search: FC = (): JSX.Element => {
             className="
                       hidden 
                       sm:block
+                      text-neutral-600
+                      font-light
                       "
           >
             Add Guest

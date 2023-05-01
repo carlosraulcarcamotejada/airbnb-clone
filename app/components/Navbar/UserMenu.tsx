@@ -50,23 +50,24 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
 
             <Menu.Button
               className={`
-                    ${!open ? "hover:bg-neutral-50" : ""}
-                    ${open ? "bg-neutral-100" : ""}
-                    active:bg-neutral-200
-                    border
-                    border-neutral-200 
-                    flex
-                    gap-3 
-                    items-center
-                    md:cursor-pointer 
-                    md:p-1 
-                    md:px-2 
-                    p-4 
-                    rounded-full 
-                    transition
+              ${open ? "shadow-md" : ""}
+              hover:shadow-md
+              border
+              border-neutral-200 
+              flex
+              justify-between 
+              items-center
+              md:cursor-pointer 
+              md:p-1 
+              md:px-1.5 
+              p-4
+              md:w-[77px]
+              md:h-[42px]
+              rounded-full 
+              transition
                     `}
             >
-              <AiOutlineMenu />
+              <AiOutlineMenu className="md:ml-1.5" />
               <div className="hidden md:block">
                 <Avatar src={currentUser?.image} />
               </div>
@@ -92,7 +93,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
                         overflow-hidden 
                         right-0 
                         rounded-xl 
-                        shadow-md
+                        shadow-lg
                         text-sm
                         top-2
                         w-[40vw]
@@ -111,7 +112,10 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
                     <MenuItem onClick={() => {}} label="My Favorites" />
                     <MenuItem onClick={() => {}} label="My Reservations" />
                     <MenuItem onClick={() => {}} label="My Properties" />
-                    <MenuItem onClick={rentModal.onOpen} label="Airbnb my home" />
+                    <MenuItem
+                      onClick={rentModal.onOpen}
+                      label="Airbnb my home"
+                    />
                     <hr />
                     <MenuItem onClick={signOut} label="Logout" />
                   </>

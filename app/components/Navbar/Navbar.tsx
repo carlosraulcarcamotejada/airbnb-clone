@@ -2,7 +2,6 @@
 import { FC } from "react";
 import { Logo } from "./Logo";
 import { Search } from "./Search";
-import { Container } from "../Container";
 import { UserMenu } from "./UserMenu";
 import { SafeUser } from "@/app/types";
 import { Categories } from "./Categories";
@@ -15,30 +14,32 @@ const Navbar: FC<NavbarProps> = ({ currentUser }): JSX.Element => {
   return (
     <div
       className="
-              bg-white 
-              border-b-2
+              bg-white
               fixed 
-              py-4
-              shadow-sm 
               w-full 
               z-10 
               "
     >
-      <Container>
-        <div
-          className="
+      <div
+        className="
+                    border-b
                     flex 
-                    gap-3 
-                    items-center 
+                    gap-3
+                    items-center
                     justify-between 
                     md:gap-0
+                    py-3.5
+                    px-4
+                    sm:px-10
+                    md:px-6
+                    lg:px-20
+      
                     "
-        >
-          <Logo />
-          <Search />
-          <UserMenu currentUser={currentUser} />
-        </div>
-      </Container>
+      >
+        <Logo />
+        <Search />
+        <UserMenu currentUser={currentUser} />
+      </div>
       <Categories />
     </div>
   );

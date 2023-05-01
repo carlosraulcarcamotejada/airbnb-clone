@@ -7,15 +7,27 @@ const Logo: FC = (): JSX.Element => {
   const router = useRouter();
 
   return (
-    <Image
+    <div
+      className="flex w-14 h-14 md:w-28 md:h-10 items-center justify-center gap-2 cursor-pointer"
       onClick={() => router.push("/")}
-      priority
-      width={100}
-      height={100}
-      src="/images/logo.png"
-      alt="logo"
-      className="cursor-pointer hidden md:block"
-    />
+    >
+      <Image
+        priority
+        width={32}
+        height={32}
+        src="/images/logo_airbnb.png"
+        alt="logo brand"
+      />
+      <Image
+        priority
+        width={67}
+        height={27}
+        sizes=""
+        src="/images/name_airbnb.png"
+        alt="name brand"
+        className={`hidden lg:block`}
+      />
+    </div>
   );
 };
 

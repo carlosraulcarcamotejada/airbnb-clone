@@ -75,7 +75,7 @@ const Modal: FC<MyModalProps> = ({
                 >
                   <button
                     onClick={onClose}
-                    className="absolute active:bg-neutral-200  hover:bg-neutral-100 hover:opacity-70 left-9 transition p-4 rounded-md"
+                    className="absolute  focus:outline-none active:bg-neutral-200  hover:bg-neutral-100 hover:opacity-70 left-9 transition p-2 rounded-full"
                     type="button"
                   >
                     <IoMdClose size={18} />

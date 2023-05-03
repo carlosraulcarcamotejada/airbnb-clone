@@ -1,5 +1,5 @@
 "use client";
-import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
+import { useRegisterModalStore } from "@/app/hooks/useRegisterModal";
 import { FC, useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { AiFillGithub } from "react-icons/ai";
@@ -11,7 +11,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { Modal } from "./Modal";
-import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
+import { useLoginModalStore } from "@/app/hooks/useLoginModal";
 
 const RegisterModal: FC = (): JSX.Element => {
   const loginModal = useLoginModalStore();

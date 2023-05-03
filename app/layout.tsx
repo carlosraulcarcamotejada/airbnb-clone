@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Nunito } from "next/font/google";
-import {getCurrentUser} from "./actions/getCurrentUser";
+import { getCurrentUser } from "./actions/getCurrentUser";
 import { ReduxProvider } from "./providers/ReduxProvider";
 import { ToasterProvider } from "./providers/ToasterProvider";
 import { LoginModal } from "./components/modals/LoginModal";
@@ -33,10 +33,8 @@ export default async function RootLayout({
           <RegisterModal />
           <RentModal />
           <Navbar currentUser={currentUser} />
+          <div className="pb-20 pt-28 ">{children}</div>
         </ReduxProvider>
-        <div className="pb-20 pt-28 ">
-          {children}
-        </div>
       </body>
     </html>
   );

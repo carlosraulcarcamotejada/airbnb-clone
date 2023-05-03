@@ -1,14 +1,12 @@
-import { FC } from "react";
 import { Container } from "./components/Container";
 import { EmptyState } from "./components/EmptyState";
 import { getListings } from "./actions/getListing";
-import { Listing } from "@prisma/client";
 import { ListingCard } from "./components/listings/ListingCard";
 import { getCurrentUser } from "./actions/getCurrentUser";
 
 
 const Home = async (): Promise<JSX.Element> => {
-  const listings: Listing[] = await getListings();
+  const listings = await getListings();
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
@@ -30,7 +28,7 @@ const Home = async (): Promise<JSX.Element> => {
                     xl:grid-cols-5
                     "
       >
-        {listings.map((listing: Listing) => (
+        {listings.map((listing) => (
           <ListingCard 
           currentUser = { currentUser}
           key={listing.id} 

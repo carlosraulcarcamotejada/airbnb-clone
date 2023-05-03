@@ -7,11 +7,11 @@ import { Heading } from "../Heading";
 import { Input } from "../inputs/Input";
 import { Button } from "../Button";
 import { toast } from "react-hot-toast";
-import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
+import { useLoginModalStore } from "@/app/hooks/useLoginModal";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Modal } from "./Modal";
-import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
+import { useRegisterModalStore } from "@/app/hooks/useRegisterModal";
 
 const LoginModal: FC = (): JSX.Element => {
   const router = useRouter();

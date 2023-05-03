@@ -3,12 +3,12 @@ import { FC, useCallback } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
 import { MenuItem } from "./MenuItem";
-import { useRegisterModalStore } from "@/app/hooks/useRegisterModalStore";
-import { useLoginModalStore } from "@/app/hooks/useLoginModalStore";
+import { useRegisterModalStore } from "@/app/hooks/useRegisterModal";
+import { useLoginModalStore } from "@/app/hooks/useLoginModal";
 import { Menu, Transition } from "@headlessui/react";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
-import { useRentModalStore } from "@/app/hooks/useRentModalStore";
+import { useRentModalStore } from "@/app/hooks/useRentModal";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;

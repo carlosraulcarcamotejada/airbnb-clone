@@ -7,6 +7,8 @@ import { LoginModal } from "./components/modals/LoginModal";
 import { RegisterModal } from "./components/modals/RegisterModal";
 import { Navbar } from "./components/Navbar/Navbar";
 import { RentModal } from "./components/modals/RentModal";
+import {Footer} from "./components/footer/Footer";
+
 
 export const metadata = {
   title: "Airbnb",
@@ -26,6 +28,10 @@ export default async function RootLayout({
 
   return (
     <html className="select-none" lang="en">
+       <head>
+       <title>Airbnb Clone</title>
+        <link rel="shortcut icon" href="/favicon.png" />
+      </head>
       <body className={font.className}>
         <ReduxProvider>
           <ToasterProvider />
@@ -34,6 +40,7 @@ export default async function RootLayout({
           <RentModal />
           <Navbar currentUser={currentUser} />
           <div className="pb-20 pt-28 ">{children}</div>
+          <Footer />
         </ReduxProvider>
       </body>
     </html>

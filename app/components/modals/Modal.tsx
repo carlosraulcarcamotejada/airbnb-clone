@@ -42,14 +42,14 @@ const Modal: FC<MyModalProps> = ({
   if (!isOpen) return <></>;
 
   return (
-    <Transition  appear show={isOpen} as={Fragment}>
+    <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
         <Transition.Child
           as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
+          enter="ease-out duration-300 "
+          enterFrom="opacity-0 "
+          enterTo="opacity-100 "
+          leave="ease-in duration-200 "
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
@@ -60,14 +60,14 @@ const Modal: FC<MyModalProps> = ({
           <div className="flex min-h-full items-center justify-center text-center">
             <Transition.Child
               as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
+              enter="ease-out duration-300 "
+              enterFrom="opacity-0 translate-y-80"
+              enterTo="opacity-100 translate-y-0"
+              leave="ease-in transition duration-200 "
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-80"
             >
-              <Dialog.Panel className="bg-white flex flex-col focus:outline-none h-full md:h-auto outline-none relative translate md:rounded-lg shadow-lg lg:w-3/6  md:w-4/6 mx-auto   w-full xl:w-2/5">
+              <Dialog.Panel className="bg-white flex flex-col focus:outline-none h-full md:h-auto outline-none relative translate md:rounded-lg shadow-lg lg:w-3/6  md:w-4/6 mx-auto w-full xl:w-2/5">
                 {/*HEADER*/}
                 <Dialog.Title
                   className="border-b flex items-center justify-center p-6 relative"
@@ -75,7 +75,7 @@ const Modal: FC<MyModalProps> = ({
                 >
                   <button
                     onClick={onClose}
-                    className="absolute  focus:outline-none active:bg-neutral-200  hover:bg-neutral-100 hover:opacity-70 left-9 transition p-2 rounded-full"
+                    className="absolute  focus:outline-none active:scale-90 hover:bg-neutral-100 hover:opacity-70 left-9 transition p-2 rounded-full"
                     type="button"
                   >
                     <IoMdClose size={18} />

@@ -19,6 +19,7 @@ const MenuItem: FC<props> = ({ onClick, label, icon: Icon }): JSX.Element => {
                     flex
                     font-semibold
                     gap-3
+                    focus:outline-none
                     items-center
                     px-4
                     py-3

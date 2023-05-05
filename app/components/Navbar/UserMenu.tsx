@@ -97,6 +97,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
                         text-sm
                         top-2
                         w-[40vw]
+                        focus:outline-none
                         "
             >
               <div

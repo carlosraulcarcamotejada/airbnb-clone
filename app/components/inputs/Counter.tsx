@@ -27,9 +27,9 @@ const Counter: FC<CounterProps> = ({
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex flex-col items-start">
-        <div className="font-medium">{title}</div>
-        <div className="font-light text-gray-600">{subtitle}</div>
+      <div className="flex flex-col items-start justify-start">
+        <div className="font-medium text-start">{title}</div>
+        <div className="font-light text-gray-600 text-start">{subtitle}</div>
       </div>
       <div className="flex items-center gap-4">
         <ButtonCounter

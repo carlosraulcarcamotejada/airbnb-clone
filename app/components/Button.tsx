@@ -35,7 +35,7 @@ const Button: FC<ButtonProps> = ({
             w-full
             ${
               outline
-                ? "bg-white border-black text-black"
+                ? "bg-white hover:bg-neutral-100/60 border border-black text-black"
                 : "bg-rose-500 border-rose-500 text-white"
             }
             ${

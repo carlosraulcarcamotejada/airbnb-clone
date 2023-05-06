@@ -47,13 +47,13 @@ const Modal: FC<MyModalProps> = ({
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300 "
-          enterFrom="opacity-0 "
-          enterTo="opacity-100 "
-          leave="ease-in duration-200 "
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
+          enterFrom="bg-opacity-0 bg-transparent"
+          enterTo="bg-opacity-60 bg-black"
+          leave="ease-in duration-200"
+          leaveFrom="bg-opacity-60 bg-black"
+          leaveTo="opacity-0 bg-transparent"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-60" />
+          <div className="fixed inset-0" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto ">
@@ -63,11 +63,11 @@ const Modal: FC<MyModalProps> = ({
               enter="ease-out duration-300 "
               enterFrom="opacity-0 translate-y-80"
               enterTo="opacity-100 translate-y-0"
-              leave="ease-in transition duration-200 "
+              leave="ease-in duration-200 "
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-80"
             >
-              <Dialog.Panel className="bg-white flex flex-col focus:outline-none h-full md:h-auto outline-none relative translate md:rounded-lg shadow-lg lg:w-3/6  md:w-4/6 mx-auto w-full xl:w-2/5">
+              <Dialog.Panel className="bg-white flex flex-col focus:outline-none h-full md:h-auto outline-none relative md:rounded-lg shadow-lg lg:w-3/6 md:w-4/6 mx-auto w-full xl:w-2/5">
                 {/*HEADER*/}
                 <Dialog.Title
                   className="border-b flex items-center justify-center p-6 relative"
@@ -75,7 +75,7 @@ const Modal: FC<MyModalProps> = ({
                 >
                   <button
                     onClick={onClose}
-                    className="absolute  focus:outline-none active:scale-90 hover:bg-neutral-100 hover:opacity-70 left-9 transition p-2 rounded-full"
+                    className="absolute focus:outline-none active:scale-90 hover:bg-neutral-100 hover:opacity-70 left-9 transition p-2 rounded-full"
                     type="button"
                   >
                     <IoMdClose size={18} />
@@ -83,10 +83,10 @@ const Modal: FC<MyModalProps> = ({
                   <div className="font-semibold text-lg">{title}</div>
                 </Dialog.Title>
                 <div className="mt-2">
-                  {/*BODY*/}
+                  {/*BODY CONTENT*/}
                   <div className="flex-auto p-6 relative ">{body}</div>
                   <div className="flex flex-col gap-2 p-6">
-                    {/*FOOTER*/}
+                    {/*FOOTER CONTENT*/}
                     <div className="flex gap-4 items-center w-full">
                       {secondaryAction && secondaryActionLabel && (
                         <Button

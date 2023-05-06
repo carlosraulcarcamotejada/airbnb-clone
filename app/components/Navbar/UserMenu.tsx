@@ -3,21 +3,21 @@ import { FC, useCallback } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
 import { MenuItem } from "./MenuItem";
-import { useRegisterModalStore } from "@/app/hooks/useRegisterModal";
-import { useLoginModalStore } from "@/app/hooks/useLoginModal";
+import { useRegisterModal } from "@/app/hooks/useRegisterModal";
+import { useLoginModal } from "@/app/hooks/useLoginModal";
 import { Menu, Transition } from "@headlessui/react";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
-import { useRentModalStore } from "@/app/hooks/useRentModal";
+import { useRentModal } from "@/app/hooks/useRentModal";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
 }
 
 const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
-  const loginModal = useLoginModalStore();
-  const registerModal = useRegisterModalStore();
-  const rentModal = useRentModalStore();
+  const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
+  const rentModal = useRentModal();
 
   const onRent = useCallback(() => {
     if (!currentUser) return loginModal.onOpen();
@@ -51,18 +51,19 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
             <Menu.Button
               className={`
               ${open ? "shadow-md" : ""}
-              hover:shadow-md
               border
               border-neutral-200 
               flex
-              justify-between 
+              focus:outline-none
+              hover:shadow-md
               items-center
+              justify-between 
               md:cursor-pointer 
+              md:h-[42px]
               md:p-1 
               md:px-1.5 
-              p-4
               md:w-[77px]
-              md:h-[42px]
+              p-4
               rounded-full 
               transition
                     `}

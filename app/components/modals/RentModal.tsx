@@ -1,7 +1,7 @@
 "use client";
 import { FC, useState, useMemo, ReactNode } from "react";
 import { Modal } from "./Modal";
-import { useRentModalStore } from "@/app/hooks/useRentModal";
+import { useRentModal } from "@/app/hooks/useRentModal";
 import { Heading } from "../Heading";
 import { categories } from "../Navbar/Categories";
 import { CategoryInput } from "../inputs/CategoryInput";
@@ -18,7 +18,7 @@ import { toast } from "react-hot-toast";
 
 const RentModal: FC = (): JSX.Element => {
   const router = useRouter();
-  const rentModal = useRentModalStore();
+  const rentModal = useRentModal();
 
   enum STEPS {
     CATEGORY = 0,

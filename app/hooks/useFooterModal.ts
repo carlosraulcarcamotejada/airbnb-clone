@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/store";
-import { close, open } from "../store/rentModal/rentModalSlice";
+import { close, open } from "../store/footerModal/footerModalSlice";
 
-const useRentModal= () => {
+const useFooterModal = () => {
   const dispatch: AppDispatch = useDispatch();
-  const rentModal = useSelector((state: RootState) => state.rentModal);
+  const footerModal = useSelector((state: RootState) => state.footerModal);
 
   const onOpen = () => {
     dispatch(open());
@@ -16,11 +16,11 @@ const useRentModal= () => {
 
   return {
     //PROPERTIES
-    ...rentModal,
+    ...footerModal,
     //METHODS
-    onOpen,
     onClose,
+    onOpen,
   };
 };
 
-export { useRentModal };
+export { useFooterModal };

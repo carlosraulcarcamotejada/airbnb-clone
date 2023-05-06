@@ -88,7 +88,7 @@ const ListingCard: FC<ListingCardProps> = ({
           {reservationDate || data.category}
         </div>
         <div className="flex items-center gap-1">
-          <div className="font-semibold">$ {price}</div>
+          <div className="font-semibold">${price}</div>
           {!reservation && <div className="font-light">night</div>}
         </div>
         {onAction && actionLabel && (

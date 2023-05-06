@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import registerModalSlice from "./registerModal/registerModalSlice";
 import loginModalSlice from "./loginModal/loginModalSlice";
 import rentModalSlice from "./rentModal/rentModalSlice";
+import footerModalSlice from "./footerModal/footerModalSlice";
 
 export const store = configureStore({
   reducer: {
     registerModal: registerModalSlice,
     loginModal: loginModalSlice,
     rentModal: rentModalSlice,
+    footerModal: footerModalSlice,
   },
 });
 

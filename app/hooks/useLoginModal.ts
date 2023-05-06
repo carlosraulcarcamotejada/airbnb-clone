@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/store";
 import { close, open } from "../store/loginModal/loginModalSlice";
 
-const useLoginModalStore = () => {
+const useLoginModal = () => {
   const dispatch: AppDispatch = useDispatch();
   const loginModal = useSelector((state: RootState) => state.loginModal);
 
@@ -23,4 +23,4 @@ const useLoginModalStore = () => {
   };
 };
 
-export { useLoginModalStore };
+export { useLoginModal };

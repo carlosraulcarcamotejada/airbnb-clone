@@ -8,6 +8,7 @@ import { RegisterModal } from "./components/modals/RegisterModal";
 import { Navbar } from "./components/Navbar/Navbar";
 import { RentModal } from "./components/modals/RentModal";
 import {Footer} from "./components/footer/Footer";
+import { FooterModal } from "./components/modals/FooterModal";
 
 
 export const metadata = {
@@ -35,6 +36,7 @@ export default async function RootLayout({
       <body className={font.className}>
         <ReduxProvider>
           <ToasterProvider />
+          <FooterModal />
           <LoginModal />
           <RegisterModal />
           <RentModal />

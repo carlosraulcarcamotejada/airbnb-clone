@@ -19,11 +19,11 @@ const FooterCopyright: FC = (): JSX.Element => {
                    flex-col
                    h-32
                    justify-between
+                   w-full
                    md:flex-row-reverse 
                    md:gap-x-2
                    md:h-full
                    md:items-center
-                   w-full
                    "
       >
         <hr />
@@ -36,13 +36,13 @@ const FooterCopyright: FC = (): JSX.Element => {
                     h-16 
                     items-center 
                     justify-start 
-                    md:h-full 
-                    md:justify-end 
                     text-sm 
                     w-full 
+                    md:h-full 
+                    md:justify-end 
                     "
         >
-          <div className="flex items-center gap-x-2  md:text-xs lg:text-sm">
+          <div className="flex items-center gap-x-2 md:text-xs lg:text-sm">
             <Image
               alt="userlogo"
               className="cursor-pointer"
@@ -51,19 +51,19 @@ const FooterCopyright: FC = (): JSX.Element => {
               src={balloon}
               width="16"
             />
-            <div className="hover:underline cursor-pointer">
+            <div className="cursor-pointer hover:underline">
               English (US)
             </div>
           </div>
-          <div className="flex items-center gap-x-2">
+          <div className="flex gap-x-2 items-center ">
             <div>$</div>
-            <div className="hover:underline cursor-pointer">USD</div>
+            <div className="cursor-pointer hover:underline">USD</div>
           </div>
           <div
             onClick={onOpen}
-            className="hidden md:flex md:items-center md:gap-x-1 group"
+            className="group hidden md:flex md:gap-x-1 md:items-center"
           >
-            <div className="group-hover:underline group-active:opacity-60">
+            <div className="group-active:opacity-60 group-hover:underline">
               Assistance and resources
             </div>
             <div className="">
@@ -83,39 +83,39 @@ const FooterCopyright: FC = (): JSX.Element => {
                     h-16 
                     items-start
                     justify-center 
+                    pb-4
+                    w-full
                     md:flex-row 
                     md:gap-x-2
                     md:h-full 
                     md:items-center 
                     md:justify-start
-                    md:text-sm 
-                    w-full
-                    pb-4
                     md:pb-0
+                    md:text-sm 
                     "
         >
           <div>
             &#169; {new Date().getFullYear()} Airbnb Clone by Carlos Cárcamo
           </div>
-          <div className="flex items-center gap-x-2">
+          <div className="flex gap-x-2 items-center">
             <div className="hidden lg:block">&#183;</div>
             <a
               href="#"
-              className="hover:underline cursor-pointer md:hidden lg:block"
+              className="cursor-pointer hover:underline md:hidden lg:block"
             >
               Privacy
             </a>
             <div className="md:hidden lg:block">&#183;</div>
             <a
               href="#"
-              className="hover:underline cursor-pointer md:hidden lg:block"
+              className="cursor-pointer hover:underline md:hidden lg:block"
             >
               Terms
             </a>
             <div className="md:hidden lg:block">&#183;</div>
             <a
               href="#"
-              className="hover:underline cursor-pointer md:hidden lg:block"
+              className="cursor-pointer hover:underline md:hidden lg:block"
             >
               Site Map
             </a>

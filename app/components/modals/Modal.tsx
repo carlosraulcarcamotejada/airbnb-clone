@@ -1,8 +1,8 @@
 "use client";
 import { FC, Fragment, ReactElement } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { IoMdClose } from "react-icons/io";
 import { Button } from "../Button";
+import { CloseButtonModal } from "./CloseButtonModal";
 
 interface MyModalProps {
   actionLabel: string;
@@ -46,7 +46,7 @@ const Modal: FC<MyModalProps> = ({
       <Dialog as="div" className="relative z-10" onClose={onClose}>
         <Transition.Child
           as={Fragment}
-          enter="ease-out duration-300 "
+          enter="ease-out duration-300"
           enterFrom="bg-opacity-0 bg-transparent"
           enterTo="bg-opacity-60 bg-black"
           leave="ease-in duration-200"
@@ -56,30 +56,55 @@ const Modal: FC<MyModalProps> = ({
           <div className="fixed inset-0" />
         </Transition.Child>
 
-        <div className="fixed inset-0 overflow-y-auto ">
-          <div className="flex min-h-full items-center justify-center text-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300 "
-              enterFrom="opacity-0 translate-y-80"
-              enterTo="opacity-100 translate-y-0"
-              leave="ease-in duration-200 "
-              leaveFrom="opacity-100 translate-y-0"
-              leaveTo="opacity-0 translate-y-80"
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300 "
+          enterFrom="opacity-0 translate-y-80"
+          enterTo="opacity-100 translate-y-0"
+          leave="ease-in duration-200 "
+          leaveFrom="opacity-100 translate-y-0"
+          leaveTo="opacity-0 translate-y-80"
+        >
+          <div className="fixed inset-0 overflow-y-auto ">
+            <div
+              className="
+                        flex
+                        items-center 
+                        justify-center 
+                        min-h-full
+                        text-center
+                        "
             >
-              <Dialog.Panel className="bg-white flex flex-col focus:outline-none h-full md:h-auto outline-none relative md:rounded-lg shadow-lg lg:w-3/6 md:w-4/6 mx-auto w-full xl:w-2/5">
+              <Dialog.Panel
+                className="
+                          bg-white 
+                          flex 
+                          flex-col 
+                          focus:outline-none 
+                          h-full 
+                          lg:w-3/6 md:w-4/6 
+                          md:h-auto 
+                          md:rounded-lg 
+                          mx-auto 
+                          outline-none 
+                          relative 
+                          shadow-lg 
+                          w-full
+                          xl:w-2/5
+                          "
+              >
                 {/*HEADER*/}
                 <Dialog.Title
-                  className="border-b flex items-center justify-center p-6 relative"
                   as="div"
+                  className="
+                            border-b 
+                            flex 
+                            items-center 
+                            justify-center
+                            p-6 
+                            relative"
                 >
-                  <button
-                    onClick={onClose}
-                    className="absolute focus:outline-none active:scale-90 hover:bg-neutral-100 hover:opacity-70 left-9 transition p-2 rounded-full"
-                    type="button"
-                  >
-                    <IoMdClose size={18} />
-                  </button>
+                  <CloseButtonModal left={9} onClose={onClose} />
                   <div className="font-semibold text-lg">{title}</div>
                 </Dialog.Title>
                 <div className="mt-2">
@@ -106,9 +131,9 @@ const Modal: FC<MyModalProps> = ({
                   </div>
                 </div>
               </Dialog.Panel>
-            </Transition.Child>
+            </div>
           </div>
-        </div>
+        </Transition.Child>
       </Dialog>
     </Transition>
   );

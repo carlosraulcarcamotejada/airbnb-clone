@@ -3,19 +3,7 @@ import { FC } from "react";
 
 const FooterContentModal: FC = (): JSX.Element => {
   return (
-    <div
-      className="
-                flex 
-                flex-col 
-                lg:px-20
-                md:flex-col 
-                md:items-start 
-                md:justify-between 
-                md:px-14 
-                xl:px-40
-                lg:flex-row
-                "
-    >
+    <ContainerFooterModal>
       {/*ATTENDANCE h-72 bg-pink-300*/}
       <ColumnContainer height={72}>
         <ColumnTitle title="Attendace" />
@@ -53,6 +41,28 @@ const FooterContentModal: FC = (): JSX.Element => {
         <ColumnLink link="Careers" />
         <ColumnLink link="Investors" />
       </ColumnContainer>
+    </ContainerFooterModal>
+  );
+};
+
+const ContainerFooterModal: FC<{ children: JSX.Element | JSX.Element[] }> = ({
+  children,
+}): JSX.Element => {
+  return (
+    <div
+      className="
+                flex 
+                flex-col 
+                md:flex-col 
+                md:items-start 
+                md:justify-between 
+                md:px-14 
+                lg:flex-row
+                lg:px-20
+                xl:px-40
+                "
+    >
+      {children}
     </div>
   );
 };
@@ -62,9 +72,9 @@ const ColumnTitle: FC<{ title: string }> = ({ title }): JSX.Element => {
     <h3
       className="
                 font-semibold 
-                lg:pb-1
-                md:text-sm 
                 text-lg 
+                md:text-sm 
+                lg:pb-1
                 "
     >
       {title}
@@ -80,7 +90,8 @@ const ColumnLink: FC<{ address?: string; link: string }> = ({
     <a
       href={address}
       className="
-                active:underline 
+                active:underline
+                active:opacity-60
                 cursor-pointer 
                 hover:underline 
                 md:font-light 
@@ -106,15 +117,15 @@ const ColumnContainer: FC<{
                 gap-y-2
                 items-start
                 justify-center
-                lg:w-96
+                md:col-span-3
                 md:gap-y-4
-                lg:h-72
+                md:grid
                 md:justify-start
                 md:w-72
-                xl:w-[416px]
-                md:grid
-                md:col-span-3
                 lg:flex
+                lg:h-72
+                lg:w-96
+                xl:w-[416px]
                 `}
     >
       {children}

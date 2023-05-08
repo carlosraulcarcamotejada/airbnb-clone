@@ -66,16 +66,18 @@ const ListingCard: FC<ListingCardProps> = ({
                     "
         >
           <Image
+            priority
             fill
             alt="listing"
+            sizes="100%"
             src={data.imageSrc}
             className="
-                        group-hover:scale-110
-                        h-full
-                        object-cover
-                        transition
-                        w-full
-                    "
+                      group-hover:scale-110
+                      h-full
+                      object-cover
+                      transition
+                      w-full
+                      "
           />
           <div className="absolute top-3 right-3">
             <HeartButton listingId={data.id} currentUser={currentUser} />

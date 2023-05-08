@@ -31,7 +31,7 @@ const Counter: FC<CounterProps> = ({
         <div className="font-medium text-start">{title}</div>
         <div className="font-light text-gray-600 text-start">{subtitle}</div>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex gap-4 items-center">
         <ButtonCounter
           icon={AiOutlineMinus}
           onClick={onReduce}
@@ -55,9 +55,9 @@ const ButtonCounter: FC<{
     <div
       onClick={onClick}
       className={`   
-                    ${!enabled ? "opacity-60" : "hover:opacity-80"}
                     ${!enabled ? "cursor-not-allowed" : ""}
                     ${!enabled ? "focus:outline-none" : "active:bg-neutral-200"}
+                    ${!enabled ? "opacity-60" : "hover:opacity-80"}
                     ${enabled ? "hover:bg-neutral-100" : ""}
                     border
                     border-neutral-400

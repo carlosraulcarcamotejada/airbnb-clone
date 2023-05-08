@@ -45,7 +45,6 @@ const Input: FC<InputProps> = ({
     setHidePassword((currentHidePassword) => {
       return currentHidePassword === "password" ? "text" : "password";
     });
-
   }, []);
 
   return (
@@ -68,7 +67,9 @@ const Input: FC<InputProps> = ({
         {...register(id, { required })}
         type={type === "password" ? hidePassword : type}
         className={`
-                bg-white
+                  ${errors[id] ? "border-rose-500" : "border-neutral-300"}
+                  ${errors[id] ? "focus:border-rose-500" : "focus:border-black"}
+                  ${formatPrice ? "pl-9" : "pl-4"}
                   border-2
                   disabled:cursor-not-allowed
                   disabled:opacity-70
@@ -80,12 +81,7 @@ const Input: FC<InputProps> = ({
                   rounded-md
                   transition
                   w-full
-                  ${formatPrice ? "pl-9" : "pl-4"}
-                  ${
-                    errors[id]
-                      ? "border-rose-500 focus:border-rose-500"
-                      : "border-neutral-300 focus:border-black"
-                  }
+                bg-white
                 `}
       />
       {type === "password" && inputValue.length > 0 && (

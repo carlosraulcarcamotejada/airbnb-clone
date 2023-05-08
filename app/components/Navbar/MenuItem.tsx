@@ -16,16 +16,16 @@ const MenuItem: FC<props> = ({ onClick, label, icon: Icon }): JSX.Element => {
         <div
           className={`
                     ${active ? "bg-neutral-100 text-neutral-600" : ""}
+                    active:bg-neutral-200
                     flex
+                    focus:outline-none
                     font-semibold
                     gap-3
-                    focus:outline-none
                     items-center
                     px-4
                     py-3
                     text-neutral-500
                     transition
-                  active:bg-neutral-200
                     `
                   }
         >

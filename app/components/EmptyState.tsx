@@ -20,11 +20,11 @@ const EmptyState: FC<EmptyStateProps> = ({
   return (
     <div
       className="
-                h-[60vh]
                 flex
                 flex-col
-                justify-center
+                h-[60vh]
                 items-center
+                justify-center
                 "
     >
       <Heading center title={title} subtitle={subtitle} />

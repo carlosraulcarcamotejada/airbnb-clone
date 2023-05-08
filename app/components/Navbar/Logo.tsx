@@ -8,24 +8,37 @@ const Logo: FC = (): JSX.Element => {
 
   return (
     <div
-      className="flex w-14 h-14 md:w-28 md:h-10 items-center justify-center gap-2 cursor-pointer"
+      className="
+                cursor-pointer
+                flex 
+                gap-x-1.5
+                h-14 
+                items-center 
+                justify-center 
+                w-14 
+                md:h-10 
+                md:w-28 
+                "
       onClick={() => router.push("/")}
     >
+       {/* logo_airbnb original dimesion: 349 × 375 */}
       <Image
-        priority
-        width={32}
-        height={32}
-        src="/images/logo_airbnb.png"
         alt="logo brand"
-      />
-      <Image
+        height={34}
         priority
-        width={67}
-        height={27}
-        sizes=""
-        src="/images/name_airbnb.png"
+        src="/images/logo_airbnb.png"
+        style={{ height: "34px", width: "32px" }}
+        width={32}
+      />
+      {/* name_airbnb original dimesion: 779 × 371 */}
+      <Image
         alt="name brand"
-        className={`hidden lg:block`}
+        className="hidden lg:block"
+        height={32}
+        priority
+        src="/images/name_airbnb.png"
+        style={{ height: "32px", width: "67px" }}
+        width={67}
       />
     </div>
   );

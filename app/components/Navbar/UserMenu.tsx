@@ -35,14 +35,14 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
               className="
                         font-semibold
                         hidden
-                      hover:bg-neutral-100 
-                        md:block
-                        md:cursor-pointer
                         px-4
                         py-3
                         rounded-full 
                         text-sm
                         transition 
+                        hover:bg-neutral-100 
+                        md:block
+                        md:cursor-pointer
                         "
             >
               Airbnb your home
@@ -58,14 +58,14 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
               hover:shadow-md
               items-center
               justify-between 
+              p-4
+              rounded-full 
+              transition
               md:cursor-pointer 
               md:h-[42px]
               md:p-1 
               md:px-1.5 
               md:w-[77px]
-              p-4
-              rounded-full 
-              transition
                     `}
             >
               <AiOutlineMenu className="md:ml-1.5" />
@@ -90,7 +90,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
                         absolute 
                         bg-white
                         border
-                        md:w-3/4 
+                        focus:outline-none
                         overflow-hidden 
                         right-0 
                         rounded-xl 
@@ -98,7 +98,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
                         text-sm
                         top-2
                         w-[40vw]
-                        focus:outline-none
+                        md:w-3/4
                         "
             >
               <div

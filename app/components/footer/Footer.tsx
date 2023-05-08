@@ -11,14 +11,14 @@ const Footer: FC = (): JSX.Element => {
                 border-t
                 bottom-0
                 left-0
-                lg:px-16
+                px-5
+                w-full
                 md:bg-white
                 md:fixed
                 md:h-12
                 md:px-14
                 md:py-0
-                px-5
-                w-full
+                lg:px-16
                 xl:px-20
                 "
     >

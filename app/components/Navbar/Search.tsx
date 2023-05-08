@@ -41,40 +41,40 @@ const Search: FC = (): JSX.Element => {
                     font-semibold
                     hidden 
                     px-6 
-                    sm:block 
                     text-center
                     text-sm 
+                    sm:block
                     "
         >
           Any Week
         </div>
         <div
           className="
-                    text-sm 
                     flex 
                     gap-3
                     items-center 
                     pl-6 
                     pr-2
+                    text-sm 
                   text-gray-600 
                     "
         >
           <div
             className="
                       hidden 
-                      sm:block
                       text-neutral-600
                       font-light
+                      sm:block
                       "
           >
             Add Guest
           </div>
           <div
             className="
+                    bg-rose-500 
                       p-2 
                       rounded-full 
-                    bg-rose-500 
-                    text-white
+                      text-white
                       "
           >
             <BiSearch size={18} />

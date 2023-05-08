@@ -25,7 +25,39 @@ export interface Category {
   description: string;
 }
 
-export const categories: Category[] = [
+const Categories: FC = (): JSX.Element => {
+  const params = useSearchParams();
+  const category = params?.get("category");
+  const pathName = usePathname();
+  const isMainPage = pathName === "/";
+
+  if (!isMainPage) return <></>;
+
+  return (
+    <Container>
+      <div
+        className="
+                  flex
+                  items-center
+                  justify-between
+                  overflow-x-auto
+                  pt-4
+                  "
+      >
+        {categories.map((categoryItem) => (
+          <CategoryBox
+            key={categoryItem.label}
+            label={categoryItem.label}
+            selected={category === categoryItem.label}
+            icon={categoryItem.icon}
+          />
+        ))}
+      </div>
+    </Container>
+  );
+};
+
+const categories: Category[] = [
   {
     label: "Beach",
     icon: TbBeach,
@@ -98,36 +130,4 @@ export const categories: Category[] = [
   },
 ];
 
-const Categories: FC = (): JSX.Element => {
-  const params = useSearchParams();
-  const category = params?.get("category");
-  const pathName = usePathname();
-  const isMainPage = pathName === "/";
-
-  if (!isMainPage) return <></>;
-
-  return (
-    <Container>
-      <div
-        className="
-                  flex
-                  items-center
-                  justify-between
-                  overflow-x-auto
-                  pt-4
-                  "
-      >
-        {categories.map((categoryItem) => (
-          <CategoryBox
-            key={categoryItem.label}
-            label={categoryItem.label}
-            selected={category === categoryItem.label}
-            icon={categoryItem.icon}
-          />
-        ))}
-      </div>
-    </Container>
-  );
-};
-
-export { Categories };
+export { Categories, categories };

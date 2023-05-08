@@ -48,18 +48,18 @@ const CategoryBox: FC<CategoryBoxProps> = ({
     <div
       onClick={handleClick}
       className={`
-                flex
-                flex-col
-                justify-center
-                items-center
-                gap-2
-                p-3
-                border-b-2
-                hover:text-neutral-800
-                transition
-                cursor-pointer
                 ${selected ? "border-b-neutral-800" : "border-transparent"}
                 ${selected ? "text-neutral-800" : "text-neutral-500"}
+                border-b-2
+                cursor-pointer
+                flex
+                flex-col
+                gap-2
+                hover:text-neutral-800
+                items-center
+                justify-center
+                p-3
+                transition
                 `}
     >
       <Icon size={26} />

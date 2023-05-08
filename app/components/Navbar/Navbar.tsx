@@ -22,19 +22,17 @@ const Navbar: FC<NavbarProps> = ({ currentUser }): JSX.Element => {
     >
       <div
         className="
-                    border-b
-                    flex 
-                    gap-3
-                    items-center
-                    justify-between 
-                    md:gap-0
-                    py-3.5
-                    px-4
-                    sm:px-10
-                    md:px-6
-                    lg:px-20
-      
-                    "
+                  border-b
+                  flex 
+                  gap-3
+                  items-center
+                  justify-between 
+                  py-3.5
+                  px-4
+                  md:gap-0
+                  md:px-3
+                  lg:px-12
+                  "
       >
         <Logo />
         <Search />

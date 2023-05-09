@@ -53,7 +53,7 @@ const RentModal: FC = (): JSX.Element => {
       dynamic(() => import("../Map"), {
         ssr: false,
       }),
-    [location]
+    []
   );
 
   const setCustomValue = (id: string, value: string | Country | number) => {

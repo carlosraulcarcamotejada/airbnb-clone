@@ -10,8 +10,8 @@ import { Button } from "../Button";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { signIn } from "next-auth/react";
-import { Modal } from "./Modal";
 import { useLoginModal } from "@/app/hooks/useLoginModal";
+import { Modal } from "./Modal";
 
 const RegisterModal: FC = (): JSX.Element => {
   const loginModal = useLoginModal();

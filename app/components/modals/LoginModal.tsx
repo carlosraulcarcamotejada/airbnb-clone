@@ -10,8 +10,8 @@ import { toast } from "react-hot-toast";
 import { useLoginModal } from "@/app/hooks/useLoginModal";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Modal } from "./Modal";
 import { useRegisterModal } from "@/app/hooks/useRegisterModal";
+import { Modal } from "./Modal";
 
 const LoginModal: FC = (): JSX.Element => {
   const router = useRouter();

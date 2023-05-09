@@ -10,7 +10,7 @@ const FooterModal: FC = (): JSX.Element => {
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={onClose}>
+      <Dialog as="div" className="relative z-10" onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300 "
@@ -34,15 +34,15 @@ const FooterModal: FC = (): JSX.Element => {
         >
           <Dialog.Panel
             className="
+                      bg-white 
                       flex 
                       flex-col 
-                      lg:h-[356px] 
-                      md:h-[695px] 
                       relative
                       rounded-t-xl 
                       shadow-lg
                       w-full 
-                    bg-white 
+                      md:h-[695px] 
+                      xl:h-[356px] 
                       "
           >
             {/*HEADER*/}

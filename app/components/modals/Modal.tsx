@@ -1,14 +1,13 @@
-"use client";
 import { FC, Fragment, ReactElement } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Button } from "../Button";
 import { CloseButtonModal } from "./CloseButtonModal";
+import { Button } from "../Button";
 
-interface MyModalProps {
+interface ModalProps {
   actionLabel: string;
   body?: ReactElement;
-  footer?: ReactElement;
   disable?: boolean;
+  footer?: ReactElement;
   isOpen?: boolean;
   onClose: () => void;
   onSubmit: () => void;
@@ -17,14 +16,14 @@ interface MyModalProps {
   title?: string;
 }
 
-const Modal: FC<MyModalProps> = ({
+const Modal: FC<ModalProps> = ({
   actionLabel,
+  body,
+  disable,
+  footer,
   isOpen,
   onClose,
   onSubmit,
-  body,
-  footer,
-  disable,
   secondaryAction,
   secondaryActionLabel,
   title,
@@ -38,8 +37,6 @@ const Modal: FC<MyModalProps> = ({
     if (disable || !secondaryAction) return;
     secondaryAction();
   };
-
-  if (!isOpen) return <></>;
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -58,80 +55,70 @@ const Modal: FC<MyModalProps> = ({
 
         <Transition.Child
           as={Fragment}
-          enter="ease-out duration-300 "
-          enterFrom="opacity-0 translate-y-80"
+          enter="ease-out duration-300 delay-100"
+          enterFrom="opacity-0 translate-y-96"
           enterTo="opacity-100 translate-y-0"
-          leave="ease-in duration-200 "
+          leave="ease-in duration-200 delay-100"
           leaveFrom="opacity-100 translate-y-0"
-          leaveTo="opacity-0 translate-y-80"
+          leaveTo="opacity-0 translate-y-96"
         >
-          <div className="fixed inset-0 overflow-y-auto ">
-            <div
+          <div className="fixed inset-0 flex items-center justify-center h-full">
+            <Dialog.Panel
               className="
-                        flex
-                        items-center 
-                        justify-center 
-                        min-h-full
-                        text-center
-                        "
+                      bg-white
+                      focus:outline-none 
+                      mx-auto 
+                      outline-none
+                      overflow-y-auto
+                      relative
+                      w-full
+                      h-full
+                      sm:h-auto
+                      sm:w-[512px]
+                      sm:rounded-lg
+                      sm:shadow-lg
+                      md:h-auto
+                      lg:w-[640px]
+                      "
             >
-              <Dialog.Panel
+              <Dialog.Title
+                as="div"
                 className="
-                          bg-white 
-                          flex 
-                          flex-col 
-                          focus:outline-none 
-                          h-full 
-                          lg:w-3/6 md:w-4/6 
-                          md:h-auto 
-                          md:rounded-lg 
-                          mx-auto 
-                          outline-none 
-                          relative 
-                          shadow-lg 
-                          w-full
-                          xl:w-2/5
-                          "
-              >
-                {/*HEADER*/}
-                <Dialog.Title
-                  as="div"
-                  className="
                             border-b 
                             flex 
                             items-center 
                             justify-center
-                            p-6 
-                            relative"
-                >
-                  <CloseButtonModal left={9} onClose={onClose} />
-                  <div className="font-semibold text-lg">{title}</div>
-                </Dialog.Title>
-                <div className="mt-2">
-                  {/*BODY CONTENT*/}
-                  <div className="flex-auto p-6 relative ">{body}</div>
-                  <div className="flex flex-col gap-2 p-6">
-                    {/*FOOTER CONTENT*/}
-                    <div className="flex gap-4 items-center w-full">
-                      {secondaryAction && secondaryActionLabel && (
-                        <Button
-                          outline
-                          label={secondaryActionLabel || ""}
-                          disable={disable}
-                          onClick={handleSecondaryAction}
-                        />
-                      )}
+                            h-14
+                            relative
+                            md:h-16
+                            "
+              >
+                <CloseButtonModal left={9} onClose={onClose} />
+                <div className="font-semibold text-lg">{title}</div>
+              </Dialog.Title>
+
+              <div className="mt-2">
+                <div className="flex-auto p-6 relative">{body}</div>
+                <div className="flex flex-col gap-2 p-6">
+                  <div className="flex gap-4 items-center w-full">
+                    {secondaryAction && secondaryActionLabel && (
                       <Button
-                        label={actionLabel}
+                        outline
+                        label={secondaryActionLabel || ""}
                         disable={disable}
-                        onClick={handleSubmit}
+                        onClick={handleSecondaryAction}
                       />
-                    </div>
-                    {footer}
+                    )}
+                    <Button
+                      label={actionLabel}
+                      disable={disable}
+                      onClick={handleSubmit}
+                    />
                   </div>
+                  {footer}
                 </div>
-              </Dialog.Panel>
-            </div>
+              </div>
+            </Dialog.Panel>
           </div>
         </Transition.Child>
       </Dialog>

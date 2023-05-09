@@ -12,8 +12,9 @@ import { FooterModal } from "./components/modals/FooterModal";
 
 
 export const metadata = {
-  title: "Airbnb",
+  title: "Airbnb Clone",
   description: "Airbnb Clone",
+  icons: ["/favicon.png"]
 };
 
 const font = Nunito({
@@ -29,10 +30,6 @@ export default async function RootLayout({
 
   return (
     <html className="select-none" lang="en">
-       <head>
-       <title>Airbnb Clone</title>
-        <link rel="shortcut icon" href="/favicon.png" />
-      </head>
       <body className={font.className}>
         <ReduxProvider>
           <ToasterProvider />

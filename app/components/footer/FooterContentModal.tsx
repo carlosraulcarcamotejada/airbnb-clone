@@ -4,42 +4,46 @@ import { FC } from "react";
 const FooterContentModal: FC = (): JSX.Element => {
   return (
     <ContainerFooterModal>
-      {/*ATTENDANCE h-72 bg-pink-300*/}
       <ColumnContainer height={72}>
         <ColumnTitle title="Attendace" />
-        <ColumnLink link=" Help Center" />
-        <ColumnLink link="AirCover" />
-        <ColumnLink link="Support for people with disabilities" />
-        <ColumnLink link="Cancellation Options" />
-        <ColumnLink link="Our response to COVID-19" />
-        <ColumnLink link="Report a problem in the neighborhood" />
+        <ColumnLinkContainer>
+          <ColumnLink link=" Help Center" />
+          <ColumnLink link="AirCover" />
+          <ColumnLink link="Support for people with disabilities" />
+          <ColumnLink link="Cancellation Options" />
+          <ColumnLink link="Our response to COVID-19" />
+          <ColumnLink link="Report a problem in the neighborhood" />
+        </ColumnLinkContainer>
+        <hr className="w-full xl:hidden" />
       </ColumnContainer>
-      {/*COMMUNITY h-32 bg-lime-300 */}
-      <hr />
       <ColumnContainer height={32}>
         <ColumnTitle title="Community" />
-        <ColumnLink link="Airbnb.org: Disaster Relief Housing" />
-        <ColumnLink link="We fight against discrimination" />
+        <ColumnLinkContainer>
+          <ColumnLink link="Airbnb.org: Disaster Relief Housing" />
+          <ColumnLink link="We fight against discrimination" />
+        </ColumnLinkContainer>
+        <hr className="w-full xl:hidden" />
       </ColumnContainer>
-      {/*HOST MODE h-60 bg-sky-300*/}
-      <hr />
       <ColumnContainer height={60}>
         <ColumnTitle title="Host mode" />
-        <ColumnLink link="List your space on Airbnb" />
-        <ColumnLink link="AirCover for hosts" />
-        <ColumnLink link="Host Resources" />
-        <ColumnLink link="Visit the community forum" />
-        <ColumnLink link="How to provide hosting services responsibly" />
+        <ColumnLinkContainer>
+          <ColumnLink link="List your space on Airbnb" />
+          <ColumnLink link="AirCover for hosts" />
+          <ColumnLink link="Host Resources" />
+          <ColumnLink link="Visit the community forum" />
+          <ColumnLink link="How to provide hosting services responsibly" />
+        </ColumnLinkContainer>
+        <hr className="w-full xl:hidden" />
       </ColumnContainer>
-      {/* AIRBNB h-60 bg-teal-300*/}
-      <hr />
       <ColumnContainer height={60}>
         <ColumnTitle title="Airbnb" />
-        <ColumnLink link="Press room" />
-        <ColumnLink link="Learn more about the new features" />
-        <ColumnLink link="Letter from our founders" />
-        <ColumnLink link="Careers" />
-        <ColumnLink link="Investors" />
+        <ColumnLinkContainer>
+          <ColumnLink link="Press room" />
+          <ColumnLink link="Learn more about the new features" />
+          <ColumnLink link="Letter from our founders" />
+          <ColumnLink link="Careers" />
+          <ColumnLink link="Investors" />
+        </ColumnLinkContainer>
       </ColumnContainer>
     </ContainerFooterModal>
   );
@@ -55,11 +59,10 @@ const ContainerFooterModal: FC<{ children: JSX.Element | JSX.Element[] }> = ({
                 flex-col 
                 md:flex-col 
                 md:items-start 
-                md:justify-between 
-                md:px-14 
-                lg:flex-row
-                lg:px-20
-                xl:px-40
+                md:justify-start 
+                md:px-6
+                xl:flex-row
+                xl:px-20
                 "
     >
       {children}
@@ -68,18 +71,7 @@ const ContainerFooterModal: FC<{ children: JSX.Element | JSX.Element[] }> = ({
 };
 
 const ColumnTitle: FC<{ title: string }> = ({ title }): JSX.Element => {
-  return (
-    <h3
-      className="
-                font-semibold 
-                text-lg 
-                md:text-sm 
-                lg:pb-1
-                "
-    >
-      {title}
-    </h3>
-  );
+  return <h3 className="font-semibold text-sm lg:pb-1">{title}</h3>;
 };
 
 const ColumnLink: FC<{ address?: string; link: string }> = ({
@@ -88,43 +80,69 @@ const ColumnLink: FC<{ address?: string; link: string }> = ({
 }): JSX.Element => {
   return (
     <a
-      href={address}
       className="
-                active:underline
                 active:opacity-60
+                active:underline
                 cursor-pointer 
                 hover:underline 
+                text-sm
+                md:col-span-1
                 md:font-light 
-                md:text-sm"
+                md:h-10
+      "
+      href={address}
     >
       {link}
     </a>
   );
 };
 
+const ColumnLinkContainer: FC<{ children: JSX.Element | JSX.Element[] }> = ({
+  children,
+}): JSX.Element => {
+  return (
+    <div
+      className="
+                flex 
+                flex-col
+                gap-y-3
+                md:gap-y-1
+                md:grid 
+                md:grid-cols-3
+                md:grid-rows-2 
+                md:justify-between
+                md:w-full
+                xl:flex
+                xl:flex-col
+                xl:gap-y-0
+                "
+    >
+      {children}
+    </div>
+  );
+};
+
 const ColumnContainer: FC<{
   children: JSX.Element | JSX.Element[];
   height: number;
-  bgBackground?: string;
-}> = ({ children, height, bgBackground }): JSX.Element => {
+}> = ({ children, height }): JSX.Element => {
   return (
     <div
       className={`
-                ${bgBackground ? bgBackground : ""}
                 ${height > 0 ? "h-" + height : ""}
                 flex
                 flex-col 
-                gap-y-2
+                gap-y-4
                 items-start
-                justify-center
-                md:col-span-3
+                justify-center       
                 md:gap-y-4
-                md:grid
+                md:grid-rows-2
+                md:h-40
                 md:justify-start
-                md:w-72
-                lg:flex
-                lg:h-72
-                lg:w-96
+                md:w-full
+                xl:flex
+                xl:h-72
+                xl:justify-start
                 xl:w-[416px]
                 `}
     >

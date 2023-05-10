@@ -56,7 +56,9 @@ const ContainerFooterModal: FC<{ children: JSX.Element | JSX.Element[] }> = ({
     <div
       className="
                 flex 
-                flex-col 
+                flex-col
+                py-4
+                md:py-0
                 md:flex-col 
                 md:items-start 
                 md:justify-start 

@@ -62,41 +62,50 @@ const Modal: FC<ModalProps> = ({
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-96"
         >
-          <div className="fixed inset-0 flex items-center justify-center h-full">
+          <div
+            className="
+                      fixed 
+                      flex
+                      h-full
+                      inset-0 
+                      items-center 
+                      justify-center 
+                      "
+          >
             <Dialog.Panel
               className="
                       bg-white
                       focus:outline-none 
+                      h-full
                       mx-auto 
                       outline-none
                       overflow-y-auto
                       relative
                       w-full
-                      h-full
                       sm:h-auto
-                      sm:w-[512px]
                       sm:rounded-lg
                       sm:shadow-lg
+                      sm:w-[512px]
                       md:h-auto
                       lg:w-[640px]
                       "
             >
+              {/* MODAL TITLE */}
               <Dialog.Title
                 as="div"
                 className="
-                            border-b 
-                            flex 
-                            items-center 
-                            justify-center
-                            h-14
-                            relative
-                            md:h-16
-                            "
+                          border-b 
+                          flex 
+                          h-14
+                          items-center 
+                          justify-center
+                          relative
+                          md:h-16
+                          "
               >
                 <CloseButtonModal left={9} onClose={onClose} />
                 <div className="font-semibold text-lg">{title}</div>
               </Dialog.Title>
-
               <div className="mt-2">
                 <div className="flex-auto p-6 relative">{body}</div>
                 <div className="flex flex-col gap-2 p-6">

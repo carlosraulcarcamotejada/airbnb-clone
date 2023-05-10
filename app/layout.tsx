@@ -7,14 +7,15 @@ import { LoginModal } from "./components/modals/LoginModal";
 import { RegisterModal } from "./components/modals/RegisterModal";
 import { Navbar } from "./components/Navbar/Navbar";
 import { RentModal } from "./components/modals/RentModal";
-import {Footer} from "./components/footer/Footer";
+import { Footer } from "./components/footer/Footer";
 import { FooterModal } from "./components/modals/FooterModal";
-
 
 export const metadata = {
   title: "Airbnb Clone",
   description: "Airbnb Clone",
-  icons: ["/favicon.png"]
+  icons: {
+    icon: '/favicon.png'
+  }
 };
 
 const font = Nunito({

@@ -9,10 +9,13 @@ const Footer: FC = (): JSX.Element => {
       className="
                 bg-neutral-50/80
                 border-t
+                bottom-0
+                left-0
                 px-5
                 w-full
                 md:bg-white
-                md:h-12
+                md:fixed
+                md:h-12 
                 md:px-14
                 md:py-0
                 lg:px-16

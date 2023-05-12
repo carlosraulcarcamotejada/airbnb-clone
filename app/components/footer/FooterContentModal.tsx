@@ -16,7 +16,7 @@ const FooterContentModal: FC = (): JSX.Element => {
         </ColumnLinkContainer>
         <hr className="w-full xl:hidden" />
       </ColumnContainer>
-      <ColumnContainer height={32}>
+      <ColumnContainer height={28}>
         <ColumnTitle title="Community" />
         <ColumnLinkContainer>
           <ColumnLink link="Airbnb.org: Disaster Relief Housing" />
@@ -57,8 +57,9 @@ const ContainerFooterModal: FC<{ children: JSX.Element | JSX.Element[] }> = ({
       className="
                 flex 
                 flex-col
-                py-4
-                md:py-0
+                py-2
+                gap-y-2
+                md:gap-0
                 md:flex-col 
                 md:items-start 
                 md:justify-start 

@@ -31,7 +31,6 @@ const ListingReservation: FC<ListingReservationProps> = ({
                 border
                 border-neutral-200
                 overflow-hidden
-                w-auto
                 "
     >
       <div className="flex items-center gap-1 p-4">
@@ -39,11 +38,13 @@ const ListingReservation: FC<ListingReservationProps> = ({
         <div className="font-light text-neutral-600 ">night</div>
       </div>
       <hr />
-      <Calendar
-        value={dateRange}
-        disabledDates={disabledDates}
-        onChange={(value) => onChangeDate(value.selection)}
-      />
+      <div>
+        <Calendar
+          value={dateRange}
+          disabledDates={disabledDates}
+          onChange={(value) => onChangeDate(value.selection)}
+        />
+      </div>
       <hr />
       <div className="p-4">
         <Button disable={disabled} label="Reserve" onClick={onSubmit} />

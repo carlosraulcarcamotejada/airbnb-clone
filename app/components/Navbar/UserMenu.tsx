@@ -9,6 +9,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
 import { useRentModal } from "@/app/hooks/useRentModal";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -78,10 +79,10 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
           {/* MENU */}
           <MenuModal
             currentUser={currentUser}
-            loginModal={loginModal}
+            onOpenLoginModal={loginModal.onOpen}
             open={open}
-            registerModal={registerModal}
-            rentModal={rentModal}
+            onOpenRegisterModal={registerModal.onOpen}
+            OnOpenRentModal={rentModal.onOpen}
           />
         </>
       )}
@@ -92,30 +93,19 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
 interface MenuModalProps {
   open: boolean;
   currentUser: SafeUser | null | undefined;
-  rentModal: {
-    onOpen: () => void;
-    onClose: () => void;
-    isOpen: boolean;
-  };
-  loginModal: {
-    onClose: () => void;
-    onOpen: () => void;
-    isOpen: boolean;
-  };
-  registerModal: {
-    onOpen: () => void;
-    onClose: () => void;
-    isOpen: boolean;
-  };
+  OnOpenRentModal: () => void;
+  onOpenLoginModal: () => void;
+  onOpenRegisterModal: () => void;
 }
 
 const MenuModal: FC<MenuModalProps> = ({
   open,
   currentUser,
-  rentModal,
-  loginModal,
-  registerModal,
+  OnOpenRentModal,
+  onOpenLoginModal,
+  onOpenRegisterModal,
 }): JSX.Element => {
+  const router = useRouter();
   return (
     <Transition
       show={open}
@@ -151,18 +141,21 @@ const MenuModal: FC<MenuModalProps> = ({
         >
           {currentUser ? (
             <>
-              <MenuItem onClick={() => {}} label="My Trips" />
+              <MenuItem
+                onClick={() => router.push("/trips")}
+                label="My Trips"
+              />
               <MenuItem onClick={() => {}} label="My Favorites" />
               <MenuItem onClick={() => {}} label="My Reservations" />
               <MenuItem onClick={() => {}} label="My Properties" />
-              <MenuItem onClick={rentModal.onOpen} label="Airbnb my home" />
+              <MenuItem onClick={OnOpenRentModal} label="Airbnb my home" />
               <hr />
               <MenuItem onClick={signOut} label="Logout" />
             </>
           ) : (
             <>
-              <MenuItem onClick={loginModal.onOpen} label="Login" />
-              <MenuItem onClick={registerModal.onOpen} label="Sing Up" />
+              <MenuItem onClick={onOpenLoginModal} label="Login" />
+              <MenuItem onClick={onOpenRegisterModal} label="Sing Up" />
             </>
           )}
         </div>

@@ -13,6 +13,7 @@ const Footer: FC = (): JSX.Element => {
                 left-0
                 px-5
                 w-full
+                z-10
                 md:bg-white
                 md:fixed
                 md:h-12 

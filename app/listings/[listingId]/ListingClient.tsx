@@ -1,7 +1,6 @@
 "use client";
 import { FC, useMemo, useState, useCallback, useEffect } from "react";
-import { Reservation } from "@prisma/client";
-import { SafeListings, SafeUser } from "@/app/types";
+import { SafeListing, SafeUser, SafeReservation } from "@/app/types";
 import { categories } from "@/app/components/Navbar/Categories";
 import { Container } from "@/app/components/Container";
 import { ListingHead } from "@/app/components/listings/ListingHead";
@@ -22,8 +21,8 @@ const initialDateRange = {
 
 interface ListingClientProps {
   currentUser?: SafeUser | null;
-  listing: SafeListings & { user: SafeUser };
-  reservations?: Reservation[];
+  listing: SafeListing & { user: SafeUser };
+  reservations?: SafeReservation[];
 }
 
 const ListingClient: FC<ListingClientProps> = ({
@@ -64,10 +63,10 @@ const ListingClient: FC<ListingClientProps> = ({
       });
       toast.success("Listing reserved!");
       setDateRange(initialDateRange);
-      //Redirect /trips
+      router.push('/trips')
       router.refresh();
     } catch (error) {
-      toast.success("Something went wrong!");
+      toast.error("Something went wrong!");
     } finally {
       setIsLoading(false);
     }
@@ -83,13 +82,14 @@ const ListingClient: FC<ListingClientProps> = ({
 
   useEffect(() => {
     if (dateRange.startDate && dateRange.endDate) {
-      const dayCount = differenceInCalendarDays(dateRange.endDate, dateRange.startDate);
+      const dayCount = differenceInCalendarDays(
+        dateRange.endDate,
+        dateRange.startDate
+      );
 
       dayCount && listing.price
-        ? setTotalPrice(dayCount * listing.price)
+        ? setTotalPrice((dayCount + 1) * listing.price)
         : setTotalPrice(listing.price);
-
-
     }
   }, [dateRange.endDate, dateRange.startDate, listing.price]);
 
@@ -127,11 +127,11 @@ const ListingClient: FC<ListingClientProps> = ({
               user={listing.user}
             />
             <div className="order-first mb-10 md:order-last md:col-span-3">
-              <ListingReservation 
+              <ListingReservation
                 dateRange={dateRange}
                 disabled={isLoading}
                 disabledDates={disabledDates}
-                onChangeDate={(value)=>setDateRange(value)}
+                onChangeDate={(value) => setDateRange(value)}
                 onSubmit={onCreateReservarion}
                 price={listing.price}
                 totalPrice={totalPrice}

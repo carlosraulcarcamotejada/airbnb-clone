@@ -1,12 +1,15 @@
 import { Container } from "./components/Container";
 import { EmptyState } from "./components/EmptyState";
-import { getListings } from "./actions/getListing";
+import { IListingParams, getListings } from "./actions/getListing";
 import { ListingCard } from "./components/listings/ListingCard";
 import { getCurrentUser } from "./actions/getCurrentUser";
 
+interface homeProps {
+  searchParams: IListingParams;
+}
 
-const Home = async (): Promise<JSX.Element> => {
-  const listings = await getListings();
+const Home = async ({ searchParams }: homeProps): Promise<JSX.Element> => {
+  const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
@@ -29,10 +32,10 @@ const Home = async (): Promise<JSX.Element> => {
                     "
       >
         {listings.map((listing) => (
-          <ListingCard 
-          currentUser = { currentUser}
-          key={listing.id} 
-          data={listing}
+          <ListingCard
+            currentUser={currentUser}
+            key={listing.id}
+            data={listing}
           />
         ))}
       </div>

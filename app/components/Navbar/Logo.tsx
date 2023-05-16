@@ -9,13 +9,16 @@ const Logo: FC = (): JSX.Element => {
   return (
     <div
       className="
+                active:scale-75
                 cursor-pointer
                 flex 
                 gap-x-1.5
                 h-14 
                 items-center 
                 justify-center 
+                transition
                 w-14 
+                md:active:scale-95
                 md:h-10 
                 md:w-28 
                 "

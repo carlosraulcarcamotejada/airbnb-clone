@@ -34,6 +34,7 @@ const RegisterModal: FC = (): JSX.Element => {
       reset();
       registerModal.onClose();
       toast.success("User saved succesfully");
+      loginModal.onOpen();
     } catch (error) {
       toast.error("Something went wrong");
     } finally {

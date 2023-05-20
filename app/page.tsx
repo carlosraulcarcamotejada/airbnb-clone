@@ -12,9 +12,13 @@ const Home = async ({ searchParams }: homeProps): Promise<JSX.Element> => {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
+  
+
   if (listings.length === 0) {
     return <EmptyState showReset />;
   }
+
+
 
   return (
     <Container>

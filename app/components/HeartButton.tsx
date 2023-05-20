@@ -22,6 +22,7 @@ const HeartButton: FC<HeartButtonProps> = ({
     <div
       onClick={toggleFavorite}
       className="
+                active:scale-95
                 cursor-pointer      
                 hover:opacity-80
                 relative
@@ -29,16 +30,14 @@ const HeartButton: FC<HeartButtonProps> = ({
                 "
     >
       <AiOutlineHeart
-        size={28}
+        size={30}
         className="
-                -right-[2px]
-                -top-[2px]
-                absolute
-                fill-white
-            "
+                  absolute
+                  fill-white
+                  "
       />
       <AiFillHeart
-        size={24}
+        size={30}
         className={hasFavorited ? "fill-rose-500" : "fill-neutral-500/70"}
       />
     </div>

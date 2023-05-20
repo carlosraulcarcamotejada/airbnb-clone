@@ -1,10 +1,50 @@
 "use client";
-import { FC } from "react";
+import { FC, useMemo } from "react";
+import { useCountries } from "@/app/hooks/useCountries";
+import { useSearchModal } from "@/app/hooks/useSearchModal";
+import { useSearchParams } from "next/navigation";
 import { BiSearch } from "react-icons/bi";
+import { differenceInDays } from "date-fns";
 
 const Search: FC = (): JSX.Element => {
+  const searchModal = useSearchModal();
+
+  const params = useSearchParams();
+
+  const { getByValue } = useCountries();
+
+  const locationValue = params?.get("locationValue");
+  const startDate = params?.get("startDate");
+  const endDate = params?.get("endDate");
+  const guestCount = params?.get("guestCount");
+
+  const locationLabel = useMemo(() => {
+    return locationValue
+      ? getByValue(locationValue as string)?.label
+      : "Anywhere";
+  }, [getByValue, locationValue]);
+
+  const durationLabel = useMemo(() => {
+    if (startDate && endDate) {
+      const start = new Date(startDate as string);
+      const end = new Date(endDate as string);
+      let diff = differenceInDays(end, start);
+
+      diff === 0 && (diff = 1);
+
+      return `${diff} Days`;
+    }
+
+    return "Any week";
+  }, [endDate, startDate]);
+
+  const guestLabel = useMemo(() => {
+    return guestCount ? `${guestCount} Guests` : "Add guest";
+  }, [guestCount]);
+
   return (
     <div
+      onClick={searchModal.onOpen}
       className="
                 border 
                 cursor-pointer
@@ -32,7 +72,7 @@ const Search: FC = (): JSX.Element => {
                     text-sm 
                     "
         >
-          Anywhere
+          {locationLabel}
         </div>
         <div
           className="
@@ -46,7 +86,7 @@ const Search: FC = (): JSX.Element => {
                     sm:block
                     "
         >
-          Any Week
+          {durationLabel}
         </div>
         <div
           className="
@@ -67,7 +107,7 @@ const Search: FC = (): JSX.Element => {
                       sm:block
                       "
           >
-            Add Guest
+            {guestLabel}
           </div>
           <div
             className="

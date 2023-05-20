@@ -11,7 +11,7 @@ interface MapProps {
   center?: [number, number];
 }
 
-const Map: FC<MapProps> = ({ center }):JSX.Element => {
+const Map: FC<MapProps> = ({ center }): JSX.Element => {
   //@ts-ignore
   delete leaflet.Icon.Default.prototype._getIconUrl;
   leaflet.Icon.Default.mergeOptions({
@@ -31,7 +31,7 @@ const Map: FC<MapProps> = ({ center }):JSX.Element => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {center && (<Marker position={center} />)}
+      {center && <Marker position={center} />}
     </MapContainer>
   );
 };

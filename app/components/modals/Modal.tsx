@@ -1,6 +1,6 @@
 import { FC, Fragment, ReactElement } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { CloseButtonModal } from "./CloseButtonModal";
+import { IoMdClose } from "react-icons/io";
 import { Button } from "../Button";
 
 interface ModalProps {
@@ -103,7 +103,7 @@ const Modal: FC<ModalProps> = ({
                           md:h-16
                           "
               >
-                <CloseButtonModal left={9} onClose={onClose} />
+                <CloseButtonModal onClose={onClose} />
                 <div className="font-semibold text-lg">{title}</div>
               </Dialog.Title>
               <div className="mt-2">
@@ -132,6 +132,30 @@ const Modal: FC<ModalProps> = ({
         </Transition.Child>
       </Dialog>
     </Transition>
+  );
+};
+
+const CloseButtonModal: FC<{
+  onClose: () => void;
+}> = ({ onClose }): JSX.Element => {
+  return (
+    <button
+      type="button"
+      onClick={onClose}
+      className="
+                absolute 
+                active:scale-90 
+                focus:outline-none 
+                hover:bg-neutral-100 
+                hover:opacity-70 
+                left-4
+                p-2 
+                rounded-full
+                transition 
+                "
+    >
+      <IoMdClose size={18} />
+    </button>
   );
 };
 

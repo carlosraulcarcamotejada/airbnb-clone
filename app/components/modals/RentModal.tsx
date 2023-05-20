@@ -7,7 +7,6 @@ import { categories } from "../Navbar/Categories";
 import { CategoryInput } from "../inputs/CategoryInput";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { CountrySelect } from "../inputs/CountrySelect";
-import { Country } from "@/app/hooks/useCountries";
 import dynamic from "next/dynamic";
 import { Counter } from "../inputs/Counter";
 import { ImageUpload } from "../inputs/ImageUpload";
@@ -15,6 +14,7 @@ import { Input } from "../inputs/Input";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import { Country } from "@/app/types";
 
 const RentModal: FC = (): JSX.Element => {
   const router = useRouter();
@@ -53,7 +53,7 @@ const RentModal: FC = (): JSX.Element => {
       dynamic(() => import("../Map"), {
         ssr: false,
       }),
-    []
+    [location]
   );
 
   const setCustomValue = (id: string, value: string | Country | number) => {
@@ -64,11 +64,11 @@ const RentModal: FC = (): JSX.Element => {
     });
   };
 
-  const stepBack = () => {
+  const onBack = () => {
     setSteps((step) => step - 1);
   };
 
-  const stepForward = () => {
+  const onNext = () => {
     setSteps((step) => step + 1);
 
     axios;
@@ -76,7 +76,7 @@ const RentModal: FC = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      if (step !== STEPS.PRICE) return stepForward();
+      if (step !== STEPS.PRICE) return onNext();
       setIsLoading(true);
       await axios.post("/api/listings", data);
       //TOAST OR SNACKBAR
@@ -113,8 +113,14 @@ const RentModal: FC = (): JSX.Element => {
                 grid-cols-1
                 md:grid-cols-2
                 gap-3
-                max-h-[50vh]
+                max-h-[35vh]
+                md:max-h-[50vh]
                 overflow-y-auto
+                rounded-xl
+                border
+                border-neutral-300
+                md:border-0
+
                 "
       >
         {categories.map((categoryItem) => (
@@ -142,7 +148,7 @@ const RentModal: FC = (): JSX.Element => {
           onChange={(value) => setCustomValue("location", value)}
           value={location}
         />
-
+        <hr />
         <Map center={location?.latlng} />
       </RentModalContainer>
     );
@@ -252,7 +258,7 @@ const RentModal: FC = (): JSX.Element => {
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.CATEGORY ? undefined : stepBack}
+      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
       title="Airbnb your home!"
     />
   );

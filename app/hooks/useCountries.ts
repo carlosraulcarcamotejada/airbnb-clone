@@ -1,12 +1,7 @@
 import countries from "world-countries";
+import { Country } from "../types";
 
-interface Country {
-  flag: string;
-  label: string;
-  latlng: [number, number];
-  region: string;
-  value: string;
-}
+
 
 const formattedCountries: Country[] = countries.map((country) => ({
   flag: country.flag,
@@ -31,4 +26,4 @@ const useCountries = () => {
 };
 
 export { useCountries };
-export type { Country };
+

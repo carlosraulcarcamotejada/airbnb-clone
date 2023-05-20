@@ -1,6 +1,7 @@
 "use client";
 import { FC } from "react";
 import { IconType } from "react-icons";
+import { BeatLoader } from "react-spinners";
 
 interface ButtonProps {
   disable?: boolean;
@@ -37,7 +38,9 @@ const Button: FC<ButtonProps> = ({
                 active:scale-95
                 disabled:cursor-not-allowed
                 disabled:opacity-70
+                disabled:scale-100
                 hover:opacity-80
+                h-[52px]
                 relative
                 rounded-lg
                 transition
@@ -45,7 +48,9 @@ const Button: FC<ButtonProps> = ({
         `}
     >
       {Icon && <Icon size={24} className="absolute left-4 top-3" />}
-      {label}
+      <div className="flex items-center justify-center">
+        {disable ? <BeatLoader color="#f5f5f5" /> : label}
+      </div>
     </button>
   );
 };

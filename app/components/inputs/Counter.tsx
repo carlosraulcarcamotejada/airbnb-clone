@@ -55,10 +55,10 @@ const ButtonCounter: FC<{
     <div
       onClick={onClick}
       className={`   
-                    ${!enabled ? "cursor-not-allowed" : ""}
-                    ${!enabled ? "focus:outline-none" : "active:bg-neutral-200"}
-                    ${!enabled ? "opacity-60" : "hover:opacity-80"}
-                    ${enabled ? "hover:bg-neutral-100" : ""}
+                    ${enabled ? "" : "cursor-not-allowed"}
+                    ${enabled ? "active:bg-neutral-200" : "focus:outline-none"}
+                    ${enabled ? "hover:opacity-80" : " opacity-60"}
+                    ${enabled ? "" : "hover:bg-neutral-100"}
                     border
                     border-neutral-400
                     cursor-pointer

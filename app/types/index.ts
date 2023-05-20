@@ -22,3 +22,12 @@ export type SafeReservation = Omit<
   endDate: string;
   listing: SafeListing;
 };
+
+
+export type Country = {
+  flag: string;
+  label: string;
+  latlng: [number, number];
+  region: string;
+  value: string;
+}

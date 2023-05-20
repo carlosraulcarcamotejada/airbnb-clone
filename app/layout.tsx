@@ -9,13 +9,12 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { RentModal } from "./components/modals/RentModal";
 import { Footer } from "./components/footer/Footer";
 import { FooterModal } from "./components/modals/FooterModal";
+import { SearchModal } from "./components/modals/SearchModal";
 
 export const metadata = {
   title: "Airbnb Clone",
   description: "Airbnb Clone",
-  icons: {
-    icon: '/favicon.png'
-  }
+  icons: '/favicon.png',
 };
 
 const font = Nunito({
@@ -38,6 +37,7 @@ export default async function RootLayout({
           <LoginModal />
           <RegisterModal />
           <RentModal />
+          <SearchModal />
           <Navbar currentUser={currentUser} />
           <div className="pb-20 pt-28 ">{children}</div>
           <Footer />

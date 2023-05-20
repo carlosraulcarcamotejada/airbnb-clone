@@ -3,7 +3,7 @@ import { FC, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useFooterModal } from "@/app/hooks/useFooterModal";
 import { FooterContentModal } from "../footer/FooterContentModal";
-import { CloseButtonModal } from "./CloseButtonModal";
+import { IoMdClose } from "react-icons/io";
 
 const FooterModal: FC = (): JSX.Element => {
   const { isOpen, onClose } = useFooterModal();
@@ -56,7 +56,7 @@ const FooterModal: FC = (): JSX.Element => {
                         relative 
                         "
             >
-              <CloseButtonModal left={4} onClose={onClose} top={4} />
+              <CloseButtonModal onClose={onClose}  />
             </Dialog.Title>
             {/*BODY CONTENT*/}
             <FooterContentModal />
@@ -64,6 +64,31 @@ const FooterModal: FC = (): JSX.Element => {
         </Transition.Child>
       </Dialog>
     </Transition>
+  );
+};
+
+const CloseButtonModal: FC<{
+  onClose: () => void;
+}> = ({ onClose }): JSX.Element => {
+  return (
+    <button
+      type="button"
+      onClick={onClose}
+      className="
+                absolute 
+                active:scale-90 
+                focus:outline-none 
+                hover:bg-neutral-100 
+                hover:opacity-70 
+                left-4
+                p-2 
+                rounded-full
+                top-2
+                transition 
+                "
+    >
+      <IoMdClose size={18} />
+    </button>
   );
 };
 

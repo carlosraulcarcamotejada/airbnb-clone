@@ -3,6 +3,7 @@ import registerModalSlice from "./registerModal/registerModalSlice";
 import loginModalSlice from "./loginModal/loginModalSlice";
 import rentModalSlice from "./rentModal/rentModalSlice";
 import footerModalSlice from "./footerModal/footerModalSlice";
+import searchModalSlice from "./searchModal/searchModalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     loginModal: loginModalSlice,
     rentModal: rentModalSlice,
     footerModal: footerModalSlice,
+    searchModal: searchModalSlice,
   },
 });
 

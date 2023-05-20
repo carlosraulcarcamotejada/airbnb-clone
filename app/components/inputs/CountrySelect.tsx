@@ -1,11 +1,12 @@
 "use client";
 import { FC } from "react";
 import Select, { Theme } from "react-select";
-import { Country, useCountries } from "@/app/hooks/useCountries";
+import { useCountries } from "@/app/hooks/useCountries";
+import { Country } from "@/app/types";
 
 interface CountrySelectProps {
   onChange: (value: Country) => void;
-  value: Country;
+  value?: Country;
 }
 
 const CountrySelect: FC<CountrySelectProps> = ({
@@ -17,7 +18,7 @@ const CountrySelect: FC<CountrySelectProps> = ({
   return (
     <div>
       <Select
-        classNames={classNames}
+        classNames={classesName}
         formatOptionLabel={(option) => <OptionLabel option={option} />}
         isClearable
         onChange={(value) => onChange(value as Country)}
@@ -30,7 +31,7 @@ const CountrySelect: FC<CountrySelectProps> = ({
   );
 };
 
-const classNames = {
+const classesName = {
   control: () => "p-3 border-2",
   input: () => "text-lg",
   option: () => "text-lg",

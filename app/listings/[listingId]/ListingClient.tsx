@@ -1,7 +1,7 @@
 "use client";
 import { FC, useMemo, useState, useCallback, useEffect } from "react";
 import { SafeListing, SafeUser, SafeReservation } from "@/app/types";
-import { categories } from "@/app/components/navbar/Categories";
+
 import { Container } from "@/app/components/Container";
 import { ListingHead } from "@/app/components/listings/ListingHead";
 import { ListingInfo } from "@/app/components/listings/ListingInfo";
@@ -12,6 +12,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { ListingReservation } from "@/app/components/listings/ListingReservation";
 import { Range } from "react-date-range";
+import { categories_array } from "@/app/components/navbar/Categories";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -94,7 +95,7 @@ const ListingClient: FC<ListingClientProps> = ({
   }, [dateRange.endDate, dateRange.startDate, listing.price]);
 
   const category = useMemo(() => {
-    return categories.find((category) => category.label === listing.category);
+    return categories_array.find((category) => category.label === listing.category);
   }, [listing.category]);
 
   return (

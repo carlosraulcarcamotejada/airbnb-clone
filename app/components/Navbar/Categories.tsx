@@ -45,7 +45,7 @@ const Categories: FC = (): JSX.Element => {
                   dark:bg-neutral-900
                   "
       >
-        {categories.map((categoryItem) => (
+        {categories_array.map((categoryItem) => (
           <CategoryBox
             key={categoryItem.label}
             label={categoryItem.label}
@@ -58,7 +58,7 @@ const Categories: FC = (): JSX.Element => {
   );
 };
 
-const categories: Category[] = [
+const categories_array: Category[] = [
   {
     label: "Beach",
     icon: TbBeach,
@@ -131,4 +131,4 @@ const categories: Category[] = [
   },
 ];
 
-export { Categories, categories };
+export { Categories, categories_array };

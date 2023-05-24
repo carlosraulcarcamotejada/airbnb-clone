@@ -3,7 +3,7 @@ import { FC, useState, useMemo, ReactNode } from "react";
 import { Modal } from "./Modal";
 import { useRentModal } from "@/app/hooks/useRentModal";
 import { Heading } from "../Heading";
-import { categories } from "../navbar/Categories";
+import { categories_array } from "../navbar/Categories";
 import { CategoryInput } from "../inputs/CategoryInput";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { CountrySelect } from "../inputs/CountrySelect";
@@ -132,7 +132,7 @@ const RentModal: FC = (): JSX.Element => {
                     overflow-y-auto
                 "
         >
-          {categories.map((categoryItem) => (
+          {categories_array.map((categoryItem) => (
             <div key={categoryItem.label} className="col-span-1">
               <CategoryInput
                 icon={categoryItem.icon}

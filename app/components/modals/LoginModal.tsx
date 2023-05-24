@@ -26,25 +26,26 @@ const LoginModal: FC = (): JSX.Element => {
     formState: { errors },
   } = useForm<FieldValues>({ defaultValues });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
 
-    signIn("credentials", {
+    const callback = await signIn("credentials", {
       ...data,
+      email: data.email?.toLowerCase(),
       redirect: false,
-    }).then((callback) => {
-      setIsLoading(false);
-
-      if (callback?.ok) {
-        toast.success("Logged in");
-        router.refresh();
-        loginModal.onClose();
-      }
-
-      if (callback?.error) {
-        toast.error(callback?.error);
-      }
     });
+
+    setIsLoading(false);
+
+    if (callback?.ok) {
+      toast.success("Logged in");
+      router.refresh();
+      loginModal.onClose();
+    }
+
+    if (callback?.error) {
+      toast.error(callback?.error);
+    }
   };
 
   const toggle = useCallback(() => {

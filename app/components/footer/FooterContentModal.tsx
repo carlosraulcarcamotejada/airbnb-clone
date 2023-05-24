@@ -14,6 +14,7 @@ const FooterContentModal: FC = (): JSX.Element => {
           <ColumnLink link="Our response to COVID-19" />
           <ColumnLink link="Report a problem in the neighborhood" />
         </ColumnLinkContainer>
+        <hr className="w-full xl:hidden dark:border-neutral-700" />
       </ColumnContainer>
       <ColumnContainer>
         <ColumnTitle title="Community" />

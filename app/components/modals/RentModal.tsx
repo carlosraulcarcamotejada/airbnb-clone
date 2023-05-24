@@ -119,7 +119,7 @@ const RentModal: FC = (): JSX.Element => {
                     top-0 
                     w-full
                     dark:bg-neutral-900/80
-                    md:hidden
+                    hidden
                     " 
         />
         <div
@@ -130,8 +130,6 @@ const RentModal: FC = (): JSX.Element => {
                     gap-3
                     max-h-[50vh]
                     overflow-y-auto
-                    md:border-0
-                    py-8
                 "
         >
           {categories.map((categoryItem) => (
@@ -309,5 +307,5 @@ const defaultValues = {
 const RentModalContainer: FC<{ children: ReactNode }> = ({
   children,
 }): JSX.Element => {
-  return <div className="flex flex-col md:gap-8">{children}</div>;
+  return <div className="flex flex-col gap-4 md:gap-8">{children}</div>;
 };

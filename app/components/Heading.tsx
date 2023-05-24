@@ -14,8 +14,8 @@ const Heading: FC<HeadingProps> = ({
 }): JSX.Element => {
   return (
     <div className={center ? "text-center" : "text-start"}>
-      <div className="font-bold text-2xl">{title}</div>
-      <div className="font-light mt-2 text-neutral-500">{subtitle}</div>
+      <div className="font-bold text-2xl dark:text-neutral-200">{title}</div>
+      <div className="font-light mt-2 text-neutral-500 dark:text-neutral-400">{subtitle}</div>
     </div>
   );
 };

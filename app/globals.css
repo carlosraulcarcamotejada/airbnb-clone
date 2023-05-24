@@ -2,12 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html,
 body,
-:root
-{
+:root {
   height: 100%;
+}
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+  }
+}
+
+html {
+  background-color: rgb(var(--foreground-rgb));
 }
 
 .leaflet-bottom,
@@ -17,13 +29,11 @@ body,
   z-index: 0 !important;
 }
 
-
 .rdrMonth {
   width: 100% !important;
 }
 
-.rdrCalendarWrapper{
+.rdrCalendarWrapper {
   font-size: 16px !important;
   width: 100% !important;
 }
-

@@ -34,7 +34,7 @@ const Categories: FC = (): JSX.Element => {
   if (!isMainPage) return <></>;
 
   return (
-    <Container>
+    <Container background="bg-neutral-900" isDark={true}>
       <div
         className="
                   flex
@@ -42,6 +42,7 @@ const Categories: FC = (): JSX.Element => {
                   justify-between
                   overflow-x-auto
                   pt-4
+                  dark:bg-neutral-900
                   "
       >
         {categories.map((categoryItem) => (

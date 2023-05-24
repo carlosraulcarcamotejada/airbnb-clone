@@ -15,9 +15,6 @@ const PropertiesPage = async (params: IParams): Promise<JSX.Element> => {
 
   const listings = await getListings({ userId: currentUser.id });
 
-
-  console.log(listings);
-
   if (listings.length === 0)
     return (
       <EmptyState

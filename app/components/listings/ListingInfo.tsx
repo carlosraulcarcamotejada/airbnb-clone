@@ -45,7 +45,7 @@ const ListingInfo: FC<ListingInfoProps> = ({
                     gap-2        
                     "
         >
-          <div>Hosted by {user?.name}</div>
+          <div className="dark:text-neutral-300">Hosted by {user?.name}</div>
           <Avatar src={user?.image} />
         </div>
         <div
@@ -54,7 +54,8 @@ const ListingInfo: FC<ListingInfoProps> = ({
                     items-center
                     gap-4
                     font-light
-                    text-neutral-500   
+                    text-neutral-500
+                    dark:text-neutral-400
                     "
         >
           <div>{guestCount} Guests</div>
@@ -62,7 +63,7 @@ const ListingInfo: FC<ListingInfoProps> = ({
           <div>{bathroomCount} Bathroom</div>
         </div>
       </div>
-      <hr />
+      <hr className="dark:border-neutral-700" />
       {category && (
         <ListingCategory
           description={category.description}
@@ -70,9 +71,9 @@ const ListingInfo: FC<ListingInfoProps> = ({
           label={category.label}
         />
       )}
-      <hr />
-      <div className="text-lg font-light text-neutral-500">{description}</div>
-      <hr />
+      <hr className="dark:border-neutral-700" />
+      <div className="text-lg font-light text-neutral-500 dark:text-neutral-400">{description}</div>
+      <hr className="dark:border-neutral-700" />
       <Map center={coordinates} />
     </div>
   );

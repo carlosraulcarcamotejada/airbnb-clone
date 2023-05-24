@@ -5,16 +5,19 @@ import { ReduxProvider } from "./providers/ReduxProvider";
 import { ToasterProvider } from "./providers/ToasterProvider";
 import { LoginModal } from "./components/modals/LoginModal";
 import { RegisterModal } from "./components/modals/RegisterModal";
-import { Navbar } from "./components/Navbar/Navbar";
+import { Navbar } from "./components/navbar/Navbar";
 import { RentModal } from "./components/modals/RentModal";
 import { Footer } from "./components/footer/Footer";
 import { FooterModal } from "./components/modals/FooterModal";
 import { SearchModal } from "./components/modals/SearchModal";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata:Metadata = {
   title: "Airbnb Clone",
   description: "Airbnb Clone",
-  icons: '/favicon.png',
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 const font = Nunito({
@@ -39,10 +42,11 @@ export default async function RootLayout({
           <RentModal />
           <SearchModal />
           <Navbar currentUser={currentUser} />
-          <div className="pb-20 pt-28 ">{children}</div>
+          <div className="pb-20 pt-28 gap-2">{children}</div>
           <Footer />
         </ReduxProvider>
       </body>
     </html>
   );
 }
+

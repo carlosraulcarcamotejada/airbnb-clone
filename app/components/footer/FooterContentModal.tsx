@@ -4,7 +4,7 @@ import { FC } from "react";
 const FooterContentModal: FC = (): JSX.Element => {
   return (
     <ContainerFooterModal>
-      <ColumnContainer height={72}>
+      <ColumnContainer>
         <ColumnTitle title="Attendace" />
         <ColumnLinkContainer>
           <ColumnLink link=" Help Center" />
@@ -14,17 +14,16 @@ const FooterContentModal: FC = (): JSX.Element => {
           <ColumnLink link="Our response to COVID-19" />
           <ColumnLink link="Report a problem in the neighborhood" />
         </ColumnLinkContainer>
-        <hr className="w-full xl:hidden" />
       </ColumnContainer>
-      <ColumnContainer height={28}>
+      <ColumnContainer>
         <ColumnTitle title="Community" />
         <ColumnLinkContainer>
           <ColumnLink link="Airbnb.org: Disaster Relief Housing" />
           <ColumnLink link="We fight against discrimination" />
         </ColumnLinkContainer>
-        <hr className="w-full xl:hidden" />
+          <hr className="w-full xl:hidden dark:border-neutral-700" />
       </ColumnContainer>
-      <ColumnContainer height={60}>
+      <ColumnContainer>
         <ColumnTitle title="Host mode" />
         <ColumnLinkContainer>
           <ColumnLink link="List your space on Airbnb" />
@@ -33,9 +32,9 @@ const FooterContentModal: FC = (): JSX.Element => {
           <ColumnLink link="Visit the community forum" />
           <ColumnLink link="How to provide hosting services responsibly" />
         </ColumnLinkContainer>
-        <hr className="w-full xl:hidden" />
+        <hr className="w-full xl:hidden dark:border-neutral-700" />
       </ColumnContainer>
-      <ColumnContainer height={60}>
+      <ColumnContainer>
         <ColumnTitle title="Airbnb" />
         <ColumnLinkContainer>
           <ColumnLink link="Press room" />
@@ -44,6 +43,7 @@ const FooterContentModal: FC = (): JSX.Element => {
           <ColumnLink link="Careers" />
           <ColumnLink link="Investors" />
         </ColumnLinkContainer>
+        <hr className="w-full xl:hidden dark:border-neutral-700 md:hidden" />
       </ColumnContainer>
     </ContainerFooterModal>
   );
@@ -60,12 +60,15 @@ const ContainerFooterModal: FC<{ children: JSX.Element | JSX.Element[] }> = ({
                 py-2
                 gap-y-2
                 md:gap-0
+                md:h-full
                 md:flex-col 
                 md:items-start 
                 md:justify-start 
                 md:px-6
                 xl:flex-row
                 xl:px-20
+                dark:bg-neutral-900
+                dark:text-neutral-400
                 "
     >
       {children}
@@ -127,12 +130,10 @@ const ColumnLinkContainer: FC<{ children: JSX.Element | JSX.Element[] }> = ({
 
 const ColumnContainer: FC<{
   children: JSX.Element | JSX.Element[];
-  height: number;
-}> = ({ children, height }): JSX.Element => {
+}> = ({ children }): JSX.Element => {
   return (
     <div
       className={`
-                ${height > 0 ? "h-" + height : ""}
                 flex
                 flex-col 
                 gap-y-4

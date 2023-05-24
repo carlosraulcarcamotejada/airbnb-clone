@@ -34,21 +34,22 @@ const ImageUpload: FC<ImageUploadProps> = ({
           <div
             onClick={() => open?.()}
             className="
-                        border-2
-                        border-dashed
-                        border-neutral-300
-                        cursor-pointer
-                        flex
-                        flex-col
-                        gap-4
-                        hover:opacity-70
-                        items-center
-                        justify-center
-                        p-20
-                        relative
-                        text-neutral-600
-                        transition
-                        "
+                      border-2
+                      border-dashed
+                      border-neutral-300
+                      cursor-pointer
+                      flex
+                      flex-col
+                      gap-4
+                      hover:opacity-70
+                      items-center
+                      justify-center
+                      p-20
+                      relative
+                      text-neutral-600
+                      transition
+                      dark:border-neutral-700
+                      "
           >
             <TbPhotoPlus size={50} />
             <div className="font-semibold text-lg">

@@ -18,13 +18,14 @@ export const CategoryInput: FC<CategoryInputProps> = ({
     <div
       onClick={() => onClick(label)}
       className={`
-            ${selected ? "border-black" : "border-neutral-200"}
+            ${selected ? "border-black dark:border-neutral-400" : "border-neutral-200  dark:border-neutral-700"}
             border-2
             cursor-pointer
             flex
             flex-col
             gap-3
             hover:border-black
+            hover:dark:border-neutral-400
             p-4
             rounded-xl
             transition

@@ -56,7 +56,7 @@ const Input: FC<InputProps> = ({
                     absolute 
                     left-2
                     top-5
-                  text-neutral-700 
+                    text-neutral-700
                     "
         />
       )}
@@ -68,9 +68,10 @@ const Input: FC<InputProps> = ({
         type={type === "password" ? hidePassword : type}
         className={`
                   ${errors[id] ? "border-rose-500" : "border-neutral-300"}
-                  ${errors[id] ? "focus:border-rose-500" : "focus:border-black"}
+                  ${errors[id] ? "focus:border-rose-500" : "focus:border-black dark:focus:border-neutral-500"}
                   ${formatPrice ? "pl-9" : "pl-4"}
                   border-2
+                  bg-white
                   disabled:cursor-not-allowed
                   disabled:opacity-70
                   font-light
@@ -81,7 +82,7 @@ const Input: FC<InputProps> = ({
                   rounded-md
                   transition
                   w-full
-                bg-white
+                  dark:border-neutral-700
                 `}
       />
       {type === "password" && inputValue.length > 0 && (

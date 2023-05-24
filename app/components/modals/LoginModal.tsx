@@ -97,9 +97,9 @@ const LoginModal: FC = (): JSX.Element => {
                 "
     >
       <div className="grid grid-cols-11 place-items-center">
-        <hr className="col-span-5 w-full" />
+        <hr className="col-span-5 w-full  dark:border-neutral-700" />
         <div className="col-span-1">or</div>
-        <hr className="col-span-5 w-full" />
+        <hr className="col-span-5 w-full  dark:border-neutral-700" />
       </div>
       <Button
         icon={FcGoogle}
@@ -119,6 +119,7 @@ const LoginModal: FC = (): JSX.Element => {
                   mt-4
                   text-center
                   text-neutral-500
+                  dark:text-neutral-300
                   "
       >
         <div
@@ -136,6 +137,7 @@ const LoginModal: FC = (): JSX.Element => {
                       cursor-pointer
                       hover:underline
                       text-neutral-800
+                      dark:text-neutral-500
                       "
           >
             Create an account

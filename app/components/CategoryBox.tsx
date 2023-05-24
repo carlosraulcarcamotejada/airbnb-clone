@@ -1,13 +1,12 @@
 "use client";
 import { FC, useCallback } from "react";
-import { Category } from "./Navbar/Categories";
 import { useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
+import { Category } from "./navbar/Categories";
 
 interface CategoryBoxProps extends Omit <Category, 'description' >   {
     selected?:boolean
 }
-
 
 
 const CategoryBox: FC<CategoryBoxProps> = ({
@@ -48,14 +47,15 @@ const CategoryBox: FC<CategoryBoxProps> = ({
     <div
       onClick={handleClick}
       className={`
-                ${selected ? "border-b-neutral-800" : "border-transparent"}
-                ${selected ? "text-neutral-800" : "text-neutral-500"}
+                ${selected ? "border-b-neutral-800 dark:border-b-neutral-200" : "border-transparent"}
+                ${selected ? "text-neutral-800 dark:text-neutral-200" : "text-neutral-500"}
                 border-b-2
                 cursor-pointer
                 flex
                 flex-col
                 gap-2
                 hover:text-neutral-800
+                hover:dark:text-neutral-200
                 items-center
                 justify-center
                 p-3

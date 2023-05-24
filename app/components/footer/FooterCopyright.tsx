@@ -15,6 +15,7 @@ const FooterCopyright: FC = (): JSX.Element => {
       {/* CURRENT MONEY AN COPYRIGHT */}
       <div
         className="
+                   bg-neutral-50
                    flex 
                    flex-col
                    h-32
@@ -24,9 +25,9 @@ const FooterCopyright: FC = (): JSX.Element => {
                    md:gap-x-2
                    md:h-full
                    md:items-center
+                   dark:bg-neutral-900
                    "
       >
-        <hr />
         {/*LOCATION, CURRENT MONEY AND ASSINTENCE OPTIONS*/}
         <div
           className="
@@ -44,8 +45,8 @@ const FooterCopyright: FC = (): JSX.Element => {
         >
           <div className="flex items-center gap-x-2 md:text-xs lg:text-sm">
             <Image
-              alt="userlogo"
-              className="cursor-pointer"
+              alt="global icon"
+              className="cursor-pointer dark:fill-neutral-400"
               height="16"
               priority
               src={balloon}
@@ -68,7 +69,7 @@ const FooterCopyright: FC = (): JSX.Element => {
             </div>
             <div className="">
               <IoIosArrowUp
-                className="group-active:opacity-60 text-black "
+                className="group-active:opacity-60 text-black dark:text-neutral-400"
                 size={20}
               />
             </div>

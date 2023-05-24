@@ -26,16 +26,18 @@ const ListingReservation: FC<ListingReservationProps> = ({
   return (
     <div
       className="
-              bg-white
+                bg-white
                 rounded-xl
                 border
                 border-neutral-200
                 overflow-hidden
+                dark:bg-neutral-900
+                dark:border-neutral-700
                 "
     >
       <div className="flex items-center gap-1 p-4">
-        <div className="text-2xl font-semibold">$ {price}</div>
-        <div className="font-light text-neutral-600 ">night</div>
+        <div className="text-2xl font-semibold dark:text-neutral-300">$ {price}</div>
+        <div className="font-light text-neutral-600 dark:text-neutral-400">night</div>
       </div>
       <hr />
       <div>
@@ -57,6 +59,7 @@ const ListingReservation: FC<ListingReservationProps> = ({
                     justify-between
                     font-semibold
                     text-lg
+                    dark:text-neutral-300
                     "
       >
         <div>Total</div>

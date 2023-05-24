@@ -56,6 +56,8 @@ const Search: FC = (): JSX.Element => {
                 shadow-sm
                 transition 
                 w-full
+                dark:border-neutral-700
+                dark:hover:bg-neutral-800
                 "
     >
       <div
@@ -69,7 +71,8 @@ const Search: FC = (): JSX.Element => {
           className="
                     font-semibold 
                     px-6
-                    text-sm 
+                    text-sm
+                    dark:text-neutral-200
                     "
         >
           {locationLabel}
@@ -84,6 +87,7 @@ const Search: FC = (): JSX.Element => {
                     text-center
                     text-sm 
                     sm:block
+                    dark:text-neutral-200
                     "
         >
           {durationLabel}
@@ -96,7 +100,8 @@ const Search: FC = (): JSX.Element => {
                     pl-6 
                     pr-2
                     text-sm 
-                  text-gray-600 
+                    text-gray-600
+                    dark:text-neutral-400
                     "
         >
           <div
@@ -105,13 +110,14 @@ const Search: FC = (): JSX.Element => {
                       text-neutral-600
                       font-light
                       sm:block
+                      dark:text-neutral-400
                       "
           >
             {guestLabel}
           </div>
           <div
             className="
-                    bg-rose-500 
+                      bg-rose-500 
                       p-2 
                       rounded-full 
                       text-white

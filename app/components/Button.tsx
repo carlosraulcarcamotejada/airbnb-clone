@@ -25,21 +25,20 @@ const Button: FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disable}
       className={`
-                ${outline ? "bg-white" : "bg-rose-500"}
+                ${outline ? "bg-white dark:bg-neutral-200" : "bg-rose-500"}
                 ${outline ? "border-black" : "border-rose-500"}
                 ${outline ? "border" : ""}
-                ${outline ? "hover:bg-neutral-100/60" : ""}
+                ${outline ? "hover:bg-neutral-100/80"  : ""}
                 ${outline ? "text-black" : "text-white"}
                 ${small ? "border" : "border-2"}
                 ${small ? "font-light" : "font-semibold"}
-                ${small ? "py-1" : "py-3"}
+                ${small ? "py-1" : "py-3"} 
                 ${small ? "text-sm" : "text-md"}
                 active:opacity-70
                 active:scale-95
                 disabled:cursor-not-allowed
                 disabled:opacity-70
                 disabled:scale-100
-                hover:opacity-80
                 h-[52px]
                 relative
                 rounded-lg

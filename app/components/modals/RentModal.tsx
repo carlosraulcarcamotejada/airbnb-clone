@@ -3,7 +3,7 @@ import { FC, useState, useMemo, ReactNode } from "react";
 import { Modal } from "./Modal";
 import { useRentModal } from "@/app/hooks/useRentModal";
 import { Heading } from "../Heading";
-import { categories } from "../Navbar/Categories";
+import { categories } from "../navbar/Categories";
 import { CategoryInput } from "../inputs/CategoryInput";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { CountrySelect } from "../inputs/CountrySelect";
@@ -107,33 +107,61 @@ const RentModal: FC = (): JSX.Element => {
         subtitle="Pick a category"
         title="Wich of these best describes your place?"
       />
-      <div
-        className="
-                grid
-                grid-cols-1
-                md:grid-cols-2
-                gap-3
-                max-h-[35vh]
-                md:max-h-[50vh]
-                overflow-y-auto
-                rounded-xl
-                border
-                border-neutral-300
-                md:border-0
-
+      <div className="relative">
+        <div 
+          className="
+                    absolute 
+                    backdrop-blur-2xl
+                    backdrop-filter 
+                    bg-white/80 
+                    col-span-2 
+                    h-8 
+                    top-0 
+                    w-full
+                    dark:bg-neutral-900/80
+                    md:hidden
+                    " 
+        />
+        <div
+          className="
+                    grid
+                    grid-cols-1
+                    md:grid-cols-2
+                    gap-3
+                    max-h-[50vh]
+                    overflow-y-auto
+                    md:border-0
+                    py-8
                 "
-      >
-        {categories.map((categoryItem) => (
-          <div key={categoryItem.label} className="col-span-1">
-            <CategoryInput
-              icon={categoryItem.icon}
-              label={categoryItem.label}
-              onClick={(category) => setCustomValue("category", category)}
-              selected={category === categoryItem.label}
-            />
-          </div>
-        ))}
+        >
+          {categories.map((categoryItem) => (
+            <div key={categoryItem.label} className="col-span-1">
+              <CategoryInput
+                icon={categoryItem.icon}
+                label={categoryItem.label}
+                onClick={(category) => setCustomValue("category", category)}
+                selected={category === categoryItem.label}
+              />
+            </div>
+          ))}
+        </div>
+        <div 
+          className="
+                    absolute 
+                    backdrop-blur-2xl
+                    backdrop-filter 
+                    bg-white/80 
+                    bottom-0 
+                    col-span-2 
+                    h-8 
+                    w-full
+                    dark:bg-neutral-900/80
+                    md:hidden
+                    "
+          />
       </div>
+
+     
     </RentModalContainer>
   );
 
@@ -148,7 +176,7 @@ const RentModal: FC = (): JSX.Element => {
           onChange={(value) => setCustomValue("location", value)}
           value={location}
         />
-        <hr />
+        <hr className="dark:border-neutral-700" />
         <Map center={location?.latlng} />
       </RentModalContainer>
     );
@@ -167,14 +195,14 @@ const RentModal: FC = (): JSX.Element => {
           title="Guests"
           value={guestCount}
         />
-        <hr />
+        <hr className="dark:border-neutral-700" />
         <Counter
           onChange={(value) => setCustomValue("roomCount", value)}
           subtitle="How many rooms do you have?"
           title="Rooms"
           value={roomCount}
         />
-        <hr />
+        <hr className="dark:border-neutral-700" />
         <Counter
           onChange={(value) => setCustomValue("bathroomCount", value)}
           subtitle="How many bathrooms do you have?"
@@ -215,7 +243,7 @@ const RentModal: FC = (): JSX.Element => {
           register={register}
           required
         />
-        <hr />
+        <hr className="dark:border-neutral-700" />
         <Input
           disable={isLoading}
           errors={errors}
@@ -281,5 +309,5 @@ const defaultValues = {
 const RentModalContainer: FC<{ children: ReactNode }> = ({
   children,
 }): JSX.Element => {
-  return <div className="flex flex-col gap-8">{children}</div>;
+  return <div className="flex flex-col md:gap-8">{children}</div>;
 };

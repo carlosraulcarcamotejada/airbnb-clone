@@ -186,7 +186,7 @@ const SearchModal: FC = (): JSX.Element => {
 const ContainerModal: FC<{ children: JSX.Element | JSX.Element[] }> = ({
   children,
 }): JSX.Element => {
-  return <div className="flex flex-col gap-8">{children}</div>;
+  return <div className="flex flex-col gap-5 md:gap-8">{children}</div>;
 };
 
 export { SearchModal };

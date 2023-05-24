@@ -53,7 +53,8 @@ const FooterModal: FC = (): JSX.Element => {
                         h-12
                         items-center
                         justify-center
-                        relative 
+                        relative
+                        dark:bg-neutral-900
                         "
             >
               <CloseButtonModal onClose={onClose}  />
@@ -78,13 +79,15 @@ const CloseButtonModal: FC<{
                 absolute 
                 active:scale-90 
                 focus:outline-none 
-                hover:bg-neutral-100 
+                hover:bg-neutral-100
+                hover:dark:bg-neutral-700
                 hover:opacity-70 
                 left-4
                 p-2 
                 rounded-full
                 top-2
-                transition 
+                transition
+                dark:text-neutral-400
                 "
     >
       <IoMdClose size={18} />

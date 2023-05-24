@@ -1,7 +1,7 @@
 "use client";
 import { FC, useMemo, useState, useCallback, useEffect } from "react";
 import { SafeListing, SafeUser, SafeReservation } from "@/app/types";
-import { categories } from "@/app/components/Navbar/Categories";
+import { categories } from "@/app/components/navbar/Categories";
 import { Container } from "@/app/components/Container";
 import { ListingHead } from "@/app/components/listings/ListingHead";
 import { ListingInfo } from "@/app/components/listings/ListingInfo";

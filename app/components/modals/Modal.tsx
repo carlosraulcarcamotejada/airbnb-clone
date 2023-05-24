@@ -88,6 +88,8 @@ const Modal: FC<ModalProps> = ({
                       sm:w-[512px]
                       md:h-auto
                       lg:w-[640px]
+                      dark:bg-neutral-900
+                      dark:text-neutral-400
                       "
             >
               {/* MODAL TITLE */}
@@ -101,6 +103,8 @@ const Modal: FC<ModalProps> = ({
                           justify-center
                           relative
                           md:h-16
+                          dark:bg-neutral-900
+                          dark:border-neutral-700
                           "
               >
                 <CloseButtonModal onClose={onClose} />
@@ -146,12 +150,14 @@ const CloseButtonModal: FC<{
                 absolute 
                 active:scale-90 
                 focus:outline-none 
-                hover:bg-neutral-100 
+                hover:bg-neutral-100
+                hover:dark:bg-neutral-700
                 hover:opacity-70 
                 left-4
                 p-2 
                 rounded-full
-                transition 
+                transition
+                dark:text-neutral-400
                 "
     >
       <IoMdClose size={18} />

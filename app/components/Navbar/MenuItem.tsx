@@ -15,8 +15,10 @@ const MenuItem: FC<props> = ({ onClick, label, icon: Icon }): JSX.Element => {
       {({ active }) => (
         <div
           className={`
-                    ${active ? "bg-neutral-100 text-neutral-600" : ""}
+                    ${active ? "bg-neutral-100 dark:bg-neutral-700" : ""}
+                    ${active ? "text-neutral-600" : ""}
                     active:bg-neutral-200
+                    active:dark:bg-neutral-700
                     flex
                     focus:outline-none
                     font-semibold
@@ -26,6 +28,7 @@ const MenuItem: FC<props> = ({ onClick, label, icon: Icon }): JSX.Element => {
                     py-3
                     text-neutral-500
                     transition
+                    dark:text-neutral-300
                     `
                   }
         >

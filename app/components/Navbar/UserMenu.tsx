@@ -1,8 +1,7 @@
 "use client";
-import { FC, Fragment, useCallback } from "react";
+import { FC, useCallback } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
-import { MenuItem } from "./MenuItem";
 import { useRegisterModal } from "@/app/hooks/useRegisterModal";
 import { useLoginModal } from "@/app/hooks/useLoginModal";
 import { Menu, Transition } from "@headlessui/react";
@@ -10,6 +9,7 @@ import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
 import { useRentModal } from "@/app/hooks/useRentModal";
 import { useRouter } from "next/navigation";
+import { MenuItem } from "./MenuItem";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -41,9 +41,12 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
                         rounded-full 
                         text-sm
                         transition 
-                        hover:bg-neutral-100 
+                        hover:bg-neutral-100
+                        dark:hover:bg-neutral-700
                         md:block
                         md:cursor-pointer
+                        dark:text-neutral-300
+                        dark:bg-neutral-800
                         "
             >
               Airbnb your home
@@ -52,6 +55,7 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
             <Menu.Button
               className={`
                         ${open ? "shadow-md" : ""}
+                        ${open ? "dark:bg-neutral-800" : ""}
                         border
                         border-neutral-200 
                         flex
@@ -67,9 +71,10 @@ const UserMenu: FC<UserMenuProps> = ({ currentUser }): JSX.Element => {
                         md:p-1 
                         md:px-1.5 
                         md:w-[77px]
+                        dark:border-neutral-700
                     `}
             >
-              <AiOutlineMenu className="md:ml-1.5" />
+              <AiOutlineMenu className="md:ml-1.5 dark:text-neutral-400" />
               <div className="hidden md:block">
                 <Avatar src={currentUser?.image} />
               </div>
@@ -119,7 +124,7 @@ const MenuModal: FC<MenuModalProps> = ({
       <Menu.Items
         className="
                   absolute 
-                bg-white
+                  bg-white
                   border
                   focus:outline-none
                   overflow-hidden 
@@ -130,6 +135,8 @@ const MenuModal: FC<MenuModalProps> = ({
                   top-2
                   w-[40vw]
                   md:w-3/4
+                  dark:bg-neutral-900
+                  dark:border-neutral-700
                   "
       >
         <div
@@ -152,7 +159,7 @@ const MenuModal: FC<MenuModalProps> = ({
               />
               <MenuItem onClick={() => router.push('/properties')} label="My Properties" />
               <MenuItem onClick={OnOpenRentModal} label="Airbnb my home" />
-              <hr />
+              <hr className="dark:border-neutral-700" />
               <MenuItem onClick={signOut} label="Logout" />
             </>
           ) : (

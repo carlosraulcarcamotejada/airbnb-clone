@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { Container } from "./components/Container";
 import { EmptyState } from "./components/EmptyState";
 import { IListingParams, getListings } from "./actions/getListing";

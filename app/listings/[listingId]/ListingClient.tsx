@@ -12,7 +12,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { ListingReservation } from "@/app/components/listings/ListingReservation";
 import { Range } from "react-date-range";
-import { categories_array } from "@/app/components/navbar/Categories";
+import { categories } from "@/app/fixtures/categories";
+
 
 const initialDateRange = {
   startDate: new Date(),
@@ -95,7 +96,7 @@ const ListingClient: FC<ListingClientProps> = ({
   }, [dateRange.endDate, dateRange.startDate, listing.price]);
 
   const category = useMemo(() => {
-    return categories_array.find((category) => category.label === listing.category);
+    return categories.find((category) => category.label === listing.category);
   }, [listing.category]);
 
   return (

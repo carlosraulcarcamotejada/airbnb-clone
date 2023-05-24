@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { EmptyState } from "./components/EmptyState";
 
 interface ErrorStateProps {
@@ -7,7 +7,6 @@ interface ErrorStateProps {
 }
 
 const ErrorState: FC<ErrorStateProps> = ({ error }): JSX.Element => {
-  useEffect(() => {}, [error]);
 
   return (
     <>

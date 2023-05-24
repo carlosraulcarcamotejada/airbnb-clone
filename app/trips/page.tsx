@@ -3,11 +3,8 @@ import { getReservations } from "../actions/getReservations";
 import { EmptyState } from "../components/EmptyState";
 import { TripsClient } from "./TripsClient";
 
-interface IParams {
-  listingId?: string;
-}
 
-const TripPage = async (params: IParams): Promise<JSX.Element> => {
+const TripPage = async (): Promise<JSX.Element> => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser)

@@ -3,11 +3,8 @@ import { getListings } from "../actions/getListing";
 import { EmptyState } from "../components/EmptyState";
 import { PropertiesClient } from "./PropertiesClient";
 
-interface IParams {
-  listingId?: string;
-}
 
-const PropertiesPage = async (params: IParams): Promise<JSX.Element> => {
+const PropertiesPage = async (): Promise<JSX.Element> => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser)
@@ -25,5 +22,6 @@ const PropertiesPage = async (params: IParams): Promise<JSX.Element> => {
 
   return <PropertiesClient currentUser={currentUser} listings={listings} />;
 };
+
 
 export default PropertiesPage;

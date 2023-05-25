@@ -11,7 +11,7 @@ import { FooterModal } from "./components/modals/FooterModal";
 import { SearchModal } from "./components/modals/SearchModal";
 import { Metadata } from "next";
 import Head from "next/head";
-import Navbar  from "./components/navbar/Navbar";
+import Navbar from '@/app/components/navbar/Navbar';
 
 export const metadata: Metadata = {
   title: "Airbnb Clone",

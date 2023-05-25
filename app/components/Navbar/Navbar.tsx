@@ -45,5 +45,4 @@ const Navbar: FC<NavbarProps> = ({ currentUser }): JSX.Element => {
     </div>
   );
 };
-
-export { Navbar };
+export default Navbar;

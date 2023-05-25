@@ -11,7 +11,7 @@ interface NavbarProps {
   currentUser?: SafeUser | null;
 }
 
-const Navbar: FC<NavbarProps> = ({ currentUser }): JSX.Element => {
+const Navbar: FC<NavbarProps> = ({ currentUser }) => {
   return (
     <div
       className="

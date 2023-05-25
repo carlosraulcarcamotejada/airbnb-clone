@@ -5,13 +5,13 @@ import { ReduxProvider } from "./providers/ReduxProvider";
 import { ToasterProvider } from "./providers/ToasterProvider";
 import { LoginModal } from "./components/modals/LoginModal";
 import { RegisterModal } from "./components/modals/RegisterModal";
-import { Navbar } from "./components/navbar/Navbar";
 import { RentModal } from "./components/modals/RentModal";
 import { Footer } from "./components/footer/Footer";
 import { FooterModal } from "./components/modals/FooterModal";
 import { SearchModal } from "./components/modals/SearchModal";
 import { Metadata } from "next";
 import Head from "next/head";
+import { Navbar } from "./components/navbar/Navbar";
 
 export const metadata: Metadata = {
   title: "Airbnb Clone",

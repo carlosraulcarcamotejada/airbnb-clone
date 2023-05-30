@@ -1,4 +1,5 @@
 "use client";
+import { InputType } from "@/app/types";
 import { FC, useState, useCallback } from "react";
 import {
   FieldErrors,
@@ -9,7 +10,7 @@ import {
 import { BiDollar } from "react-icons/bi";
 import { BiHide, BiShow } from "react-icons/bi";
 
-type InputType = "password" | "text" | "number";
+
 
 interface InputProps {
   disable?: boolean;

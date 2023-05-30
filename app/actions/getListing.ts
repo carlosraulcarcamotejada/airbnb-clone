@@ -2,14 +2,14 @@ import prisma from "@/app/libs/prismadb";
 import { Listing } from "@prisma/client";
 
 export interface IListingParams {
-  userId?: string;
-  guestCount?: number;
-  roomCount?: number;
   bathroomCount?: number;
-  startDate?: string;
-  endDate?: string;
-  locationValue?: string;
   category?: string;
+  endDate?: string;
+  guestCount?: number;
+  locationValue?: string;
+  roomCount?: number;
+  startDate?: string;
+  userId?: string;
 }
 
 const getListings = async (params: IListingParams) => {

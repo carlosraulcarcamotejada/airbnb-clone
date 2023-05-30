@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     maximumScale: 1,
   },
   manifest: "/site.manifest.json",
+  
 };
 
 const font = Nunito({
@@ -49,6 +50,10 @@ export default async function RootLayout({
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <link rel="apple-touch-icon" href="/apple-icon-180.png" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link rel="apple-touch-startup-image" href="/icon.png" />
+
         <link
           rel="apple-touch-startup-image"
           href="/splash-images/apple-splash-2048-2732.jpg"

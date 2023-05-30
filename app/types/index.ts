@@ -31,3 +31,5 @@ export type Country = {
   region: string;
   value: string;
 }
+
+export type InputType = "password" | "text" | "number";

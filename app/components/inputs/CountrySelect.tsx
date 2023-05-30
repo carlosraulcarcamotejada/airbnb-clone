@@ -18,7 +18,7 @@ const CountrySelect: FC<CountrySelectProps> = ({
   return (
     <div>
       <Select
-        classNames={classesName}
+        classNames={classNames}
         formatOptionLabel={(option) => <OptionLabel option={option} />}
         isClearable
         onChange={(value) => onChange(value as Country)}
@@ -31,7 +31,7 @@ const CountrySelect: FC<CountrySelectProps> = ({
   );
 };
 
-const classesName = {
+const classNames = {
   control: () => "p-3 border-2",
   input: () => "text-lg",
   option: () => "text-lg",

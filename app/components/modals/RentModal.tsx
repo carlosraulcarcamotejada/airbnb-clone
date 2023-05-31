@@ -143,20 +143,6 @@ const RentModal: FC = (): JSX.Element => {
             </div>
           ))}
         </div>
-        <div 
-          className="
-                    absolute 
-                    backdrop-blur-2xl
-                    backdrop-filter 
-                    bg-white/80 
-                    bottom-0 
-                    col-span-2 
-                    h-8 
-                    w-full
-                    dark:bg-neutral-900/80
-                    md:hidden
-                    "
-          />
       </div>
 
      

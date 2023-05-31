@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 import { Container } from "./components/Container";
 import { EmptyState } from "./components/EmptyState";
 import { IListingParams, getListings } from "./actions/getListing";
@@ -13,13 +13,9 @@ const Home = async ({ searchParams }: homeProps): Promise<JSX.Element> => {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
-  
-
   if (listings.length === 0) {
     return <EmptyState showReset />;
   }
-
-
 
   return (
     <Container>

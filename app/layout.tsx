@@ -10,7 +10,6 @@ import { Footer } from "./components/footer/Footer";
 import { FooterModal } from "./components/modals/FooterModal";
 import { SearchModal } from "./components/modals/SearchModal";
 import { Metadata } from "next";
-import Head from "next/head";
 import { Navbar } from "./components/navbar/Navbar";
 
 export const metadata: Metadata = {

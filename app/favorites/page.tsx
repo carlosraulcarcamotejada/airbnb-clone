@@ -15,6 +15,9 @@ const FavoritePage = async (): Promise<JSX.Element> => {
       />
     );
 
+
+
+
   return (
     <FavoritesClient 
       currentUser={currentUser}

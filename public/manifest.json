@@ -1,5 +1,10 @@
 {
   "display": "standalone",
+  "name": "Airbnb Clone",
+  "short_name": "Airbnb Clone",
+  "start_url": "/",
+  "theme_color": "#111827",
+  "background_color": "#111827",
   "icons": [
     {
       "src": "manifest-icon-192.maskable.png",

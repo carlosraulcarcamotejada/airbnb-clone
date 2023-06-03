@@ -12,7 +12,9 @@ import { SearchModal } from "./components/modals/SearchModal";
 import { Metadata } from "next";
 import { Navbar } from "./components/navbar/Navbar";
 
+
 export const metadata: Metadata = {
+  themeColor:"#111827",
   title: "Airbnb Clone",
   description: "Airbnb Clone",
   icons: {
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 1,
   },
-  manifest: "/site.manifest.json",
+  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black",
@@ -195,3 +197,5 @@ export default async function RootLayout({
     </html>
   );
 }
+
+
